@@ -1,11 +1,42 @@
 :root {
+  --ecl-color-primary-180: #051036;
+  --ecl-color-primary-160: #0a1f6c;
+  --ecl-color-primary-140: #0f2fa2;
+  --ecl-color-primary-120: #143fd9;
+  --ecl-color-primary-100: #3860ed;
+  --ecl-color-primary-80: #5577f0;
+  --ecl-color-primary-60: #89a1f4;
+  --ecl-color-primary-40: #b1c0f8;
+  --ecl-color-primary-20: #d8e0fb;
+  --ecl-color-secondary-180: #8f5600;
+  --ecl-color-secondary-160: #e08700;
+  --ecl-color-secondary-140: #ff9d0a;
+  --ecl-color-secondary-120: #ffad33;
+  --ecl-color-secondary-100: #ffbe5c;
+  --ecl-color-secondary-80: #ffcb7c;
+  --ecl-color-secondary-60: #ffd89d;
+  --ecl-color-secondary-40: #ffe5be;
+  --ecl-color-secondary-20: #fff2de;
+  --ecl-color-dark-100: #26324b;
+  --ecl-color-dark-80: #546fa6;
+  --ecl-color-dark-60: #99aacc;
+  --ecl-color-neutral-180: #6c85d1;
+  --ecl-color-neutral-160: #7f95d7;
+  --ecl-color-neutral-140: #92a5dd;
+  --ecl-color-neutral-120: #a6b5e3;
+  --ecl-color-neutral-100: #b9c5e9;
+  --ecl-color-neutral-80: #cdd5ef;
+  --ecl-color-neutral-60: #e0e5f5;
+  --ecl-color-neutral-40: #f3f5fb;
+  --ecl-color-neutral-20: #f8f9fd;
+  --ecl-color-background: #fcfcfc;
+  --ecl-color-branding: #004494;
+  --ecl-color-white: #ffffff;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  color: #111827;
-  background:
-    radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 34rem),
-    linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+  color: var(--ecl-color-dark-100);
+  background: var(--ecl-color-neutral-40);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

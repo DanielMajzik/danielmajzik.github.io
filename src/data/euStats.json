@@ -1,0 +1,632 @@
+{
+  "generatedAt": "2026-04-25T09:08:21.652Z",
+  "coverage": "Current EU-27 member states",
+  "years": [
+    "2014",
+    "2019"
+  ],
+  "metrics": [
+    {
+      "id": "meanIncome",
+      "label": "Mean equivalised net income",
+      "unit": "PPS",
+      "dataset": "ilc_di03"
+    },
+    {
+      "id": "medianIncome",
+      "label": "Median equivalised net income",
+      "unit": "PPS",
+      "dataset": "ilc_di03"
+    },
+    {
+      "id": "smokingLess20",
+      "label": "Daily smokers under 20 cigarettes",
+      "unit": "%",
+      "dataset": "hlth_ehis_sk3i"
+    },
+    {
+      "id": "smoking20Plus",
+      "label": "Daily smokers 20+ cigarettes",
+      "unit": "%",
+      "dataset": "hlth_ehis_sk3i"
+    },
+    {
+      "id": "heavyDrinking",
+      "label": "Heavy episodic drinking at least monthly",
+      "unit": "%",
+      "dataset": "hlth_ehis_al3e",
+      "calculation": "GE1W + MTH"
+    },
+    {
+      "id": "mentalHealth",
+      "label": "Self-reported chronic depression",
+      "unit": "%",
+      "dataset": "hlth_ehis_cd1e"
+    }
+  ],
+  "countries": {
+    "AT": {
+      "name": "Austria",
+      "stats": {
+        "2014": {
+          "meanIncome": 24340,
+          "medianIncome": 21662,
+          "smokingLess20": 14.6,
+          "smoking20Plus": 9.3,
+          "heavyDrinking": 18.7,
+          "mentalHealth": 7.7
+        },
+        "2019": {
+          "meanIncome": 26300,
+          "medianIncome": 23687,
+          "smokingLess20": 12.1,
+          "smoking20Plus": 8.2,
+          "heavyDrinking": 16.4,
+          "mentalHealth": 7.5
+        }
+      }
+    },
+    "BE": {
+      "name": "Belgium",
+      "stats": {
+        "2014": {
+          "meanIncome": 21148,
+          "medianIncome": 19591,
+          "smokingLess20": 10.6,
+          "smoking20Plus": 6.6,
+          "heavyDrinking": 27.5,
+          "mentalHealth": 6.7
+        },
+        "2019": {
+          "meanIncome": 23625,
+          "medianIncome": 22141,
+          "smokingLess20": 9.7,
+          "smoking20Plus": 4.9,
+          "heavyDrinking": 27.5,
+          "mentalHealth": 7.3
+        }
+      }
+    },
+    "BG": {
+      "name": "Bulgaria",
+      "stats": {
+        "2014": {
+          "meanIncome": 7970,
+          "medianIncome": 6754,
+          "smokingLess20": 14.6,
+          "smoking20Plus": 12.7,
+          "heavyDrinking": 17.1,
+          "mentalHealth": 3.2
+        },
+        "2019": {
+          "meanIncome": 11001,
+          "medianIncome": 8371,
+          "smokingLess20": 15.8,
+          "smoking20Plus": 12.9,
+          "heavyDrinking": 12.3,
+          "mentalHealth": 2.7
+        }
+      }
+    },
+    "HR": {
+      "name": "Croatia",
+      "stats": {
+        "2014": {
+          "meanIncome": 8469,
+          "medianIncome": 7632,
+          "smokingLess20": 12.7,
+          "smoking20Plus": 11.8,
+          "heavyDrinking": 10.9,
+          "mentalHealth": 5.7
+        },
+        "2019": {
+          "meanIncome": 11884,
+          "medianIncome": 10734,
+          "smokingLess20": 10.2,
+          "smoking20Plus": 11.6,
+          "heavyDrinking": 16.6,
+          "mentalHealth": 11.6
+        }
+      }
+    },
+    "CY": {
+      "name": "Cyprus",
+      "stats": {
+        "2014": {
+          "meanIncome": 20161,
+          "medianIncome": 15762,
+          "smokingLess20": 13.1,
+          "smoking20Plus": 12.1,
+          "heavyDrinking": 5.2,
+          "mentalHealth": 3.6
+        },
+        "2019": {
+          "meanIncome": 22644,
+          "medianIncome": 18844,
+          "smokingLess20": 11.6,
+          "smoking20Plus": 9.7,
+          "heavyDrinking": 3.5,
+          "mentalHealth": 4.7
+        }
+      }
+    },
+    "CZ": {
+      "name": "Czechia",
+      "stats": {
+        "2014": {
+          "meanIncome": 12513,
+          "medianIncome": 11091,
+          "smokingLess20": 15.2,
+          "smoking20Plus": 6,
+          "heavyDrinking": 14.9,
+          "mentalHealth": 3.9
+        },
+        "2019": {
+          "meanIncome": 15541,
+          "medianIncome": 14035,
+          "smokingLess20": 13.9,
+          "smoking20Plus": 5.4,
+          "heavyDrinking": 20.8,
+          "mentalHealth": 4.4
+        }
+      }
+    },
+    "DK": {
+      "name": "Denmark",
+      "stats": {
+        "2014": {
+          "meanIncome": 22316,
+          "medianIncome": 19987,
+          "smokingLess20": 8.3,
+          "smoking20Plus": 3.9,
+          "heavyDrinking": 37.4,
+          "mentalHealth": 8
+        },
+        "2019": {
+          "meanIncome": 25004,
+          "medianIncome": 22371,
+          "smokingLess20": 8.6,
+          "smoking20Plus": 3.1,
+          "heavyDrinking": 37.8,
+          "mentalHealth": 10
+        }
+      }
+    },
+    "EE": {
+      "name": "Estonia",
+      "stats": {
+        "2014": {
+          "meanIncome": 11294,
+          "medianIncome": 9241,
+          "smokingLess20": 15.2,
+          "smoking20Plus": 7.5,
+          "heavyDrinking": 23.3,
+          "mentalHealth": 4.8
+        },
+        "2019": {
+          "meanIncome": 15879,
+          "medianIncome": 14240,
+          "smokingLess20": 13.5,
+          "smoking20Plus": 5.4,
+          "heavyDrinking": 14.2,
+          "mentalHealth": 7
+        }
+      }
+    },
+    "FI": {
+      "name": "Finland",
+      "stats": {
+        "2014": {
+          "meanIncome": 21221,
+          "medianIncome": 19250,
+          "smokingLess20": 11.6,
+          "smoking20Plus": 0,
+          "heavyDrinking": 33.9,
+          "mentalHealth": 10.5
+        },
+        "2019": {
+          "meanIncome": 22965,
+          "medianIncome": 20362,
+          "smokingLess20": 7.1,
+          "smoking20Plus": 2.8,
+          "heavyDrinking": null,
+          "mentalHealth": 8.8
+        }
+      }
+    },
+    "FR": {
+      "name": "France",
+      "stats": {
+        "2014": {
+          "meanIncome": 22416,
+          "medianIncome": 19307,
+          "smokingLess20": 16,
+          "smoking20Plus": 4.6,
+          "heavyDrinking": null,
+          "mentalHealth": 5.9
+        },
+        "2019": {
+          "meanIncome": 23782,
+          "medianIncome": 20471,
+          "smokingLess20": 13.8,
+          "smoking20Plus": 4.1,
+          "heavyDrinking": 20.5,
+          "mentalHealth": 7.7
+        }
+      }
+    },
+    "DE": {
+      "name": "Germany",
+      "stats": {
+        "2014": {
+          "meanIncome": 21947,
+          "medianIncome": 19216,
+          "smokingLess20": 10,
+          "smoking20Plus": 5,
+          "heavyDrinking": 33,
+          "mentalHealth": 10.6
+        },
+        "2019": {
+          "meanIncome": 25194,
+          "medianIncome": 22693,
+          "smokingLess20": 14.1,
+          "smoking20Plus": 7.8,
+          "heavyDrinking": 30.4,
+          "mentalHealth": 11.6
+        }
+      }
+    },
+    "EL": {
+      "name": "Greece",
+      "stats": {
+        "2014": {
+          "meanIncome": 10028,
+          "medianIncome": 8674,
+          "smokingLess20": 11.9,
+          "smoking20Plus": 15.1,
+          "heavyDrinking": 10.3,
+          "mentalHealth": 4.7
+        },
+        "2019": {
+          "meanIncome": 11179,
+          "medianIncome": 9765,
+          "smokingLess20": 12.8,
+          "smoking20Plus": 10.8,
+          "heavyDrinking": 6,
+          "mentalHealth": 3.8
+        }
+      }
+    },
+    "HU": {
+      "name": "Hungary",
+      "stats": {
+        "2014": {
+          "meanIncome": 8583,
+          "medianIncome": 7559,
+          "smokingLess20": 19.6,
+          "smoking20Plus": 6.2,
+          "heavyDrinking": 8.3,
+          "mentalHealth": 4.9
+        },
+        "2019": {
+          "meanIncome": 10216,
+          "medianIncome": 9344,
+          "smokingLess20": 12.8,
+          "smoking20Plus": 6.5,
+          "heavyDrinking": 13.3,
+          "mentalHealth": 4
+        }
+      }
+    },
+    "IE": {
+      "name": "Ireland",
+      "stats": {
+        "2014": {
+          "meanIncome": 19361,
+          "medianIncome": 16567,
+          "smokingLess20": 8.7,
+          "smoking20Plus": 4,
+          "heavyDrinking": 32.2,
+          "mentalHealth": 12.1
+        },
+        "2019": {
+          "meanIncome": 22573,
+          "medianIncome": 19692,
+          "smokingLess20": 9.8,
+          "smoking20Plus": 4.1,
+          "heavyDrinking": 24.4,
+          "mentalHealth": 3.9
+        }
+      }
+    },
+    "IT": {
+      "name": "Italy",
+      "stats": {
+        "2014": {
+          "meanIncome": 17340,
+          "medianIncome": 15254,
+          "smokingLess20": 11.8,
+          "smoking20Plus": 5.6,
+          "heavyDrinking": 6.6,
+          "mentalHealth": 5.5
+        },
+        "2019": {
+          "meanIncome": 19452,
+          "medianIncome": 17099,
+          "smokingLess20": 11.8,
+          "smoking20Plus": 4.7,
+          "heavyDrinking": 4.3,
+          "mentalHealth": 5.3
+        }
+      }
+    },
+    "LV": {
+      "name": "Latvia",
+      "stats": {
+        "2014": {
+          "meanIncome": 8898,
+          "medianIncome": 7320,
+          "smokingLess20": 16.5,
+          "smoking20Plus": 7.6,
+          "heavyDrinking": 19.2,
+          "mentalHealth": 9.1
+        },
+        "2019": {
+          "meanIncome": 13135,
+          "medianIncome": 11031,
+          "smokingLess20": 14.9,
+          "smoking20Plus": 7.2,
+          "heavyDrinking": 14.2,
+          "mentalHealth": 8.4
+        }
+      }
+    },
+    "LT": {
+      "name": "Lithuania",
+      "stats": {
+        "2014": {
+          "meanIncome": 9410,
+          "medianIncome": 7595,
+          "smokingLess20": 13.4,
+          "smoking20Plus": 6.8,
+          "heavyDrinking": 20.1,
+          "mentalHealth": 4.7
+        },
+        "2019": {
+          "meanIncome": 14054,
+          "medianIncome": 11509,
+          "smokingLess20": 13.2,
+          "smoking20Plus": 5.2,
+          "heavyDrinking": 15.9,
+          "mentalHealth": 7
+        }
+      }
+    },
+    "LU": {
+      "name": "Luxembourg",
+      "stats": {
+        "2014": {
+          "meanIncome": 31759,
+          "medianIncome": 28271,
+          "smokingLess20": 8.8,
+          "smoking20Plus": 5,
+          "heavyDrinking": 34.5,
+          "mentalHealth": 9.5
+        },
+        "2019": {
+          "meanIncome": 34089,
+          "medianIncome": 28943,
+          "smokingLess20": 7.5,
+          "smoking20Plus": 3,
+          "heavyDrinking": 34.3,
+          "mentalHealth": 10
+        }
+      }
+    },
+    "MT": {
+      "name": "Malta",
+      "stats": {
+        "2014": {
+          "meanIncome": 17532,
+          "medianIncome": 15686,
+          "smokingLess20": 10.8,
+          "smoking20Plus": 8.1,
+          "heavyDrinking": 19.2,
+          "mentalHealth": 5.4
+        },
+        "2019": {
+          "meanIncome": 20879,
+          "medianIncome": 18588,
+          "smokingLess20": 12.9,
+          "smoking20Plus": 6.6,
+          "heavyDrinking": 15.5,
+          "mentalHealth": 3.5
+        }
+      }
+    },
+    "NL": {
+      "name": "Netherlands",
+      "stats": {
+        "2014": {
+          "meanIncome": 20875,
+          "medianIncome": 18805,
+          "smokingLess20": 13.1,
+          "smoking20Plus": 4.1,
+          "heavyDrinking": null,
+          "mentalHealth": 7.9
+        },
+        "2019": {
+          "meanIncome": 24413,
+          "medianIncome": 21968,
+          "smokingLess20": 11.7,
+          "smoking20Plus": 2.9,
+          "heavyDrinking": 19.2,
+          "mentalHealth": 8.3
+        }
+      }
+    },
+    "PL": {
+      "name": "Poland",
+      "stats": {
+        "2014": {
+          "meanIncome": 11042,
+          "medianIncome": 9560,
+          "smokingLess20": 11.9,
+          "smoking20Plus": 10,
+          "heavyDrinking": 17.4,
+          "mentalHealth": 4.2
+        },
+        "2019": {
+          "meanIncome": 13889,
+          "medianIncome": 12335,
+          "smokingLess20": 9.8,
+          "smoking20Plus": 8.6,
+          "heavyDrinking": 16.9,
+          "mentalHealth": 4.2
+        }
+      }
+    },
+    "PT": {
+      "name": "Portugal",
+      "stats": {
+        "2014": {
+          "meanIncome": 12128,
+          "medianIncome": 10125,
+          "smokingLess20": 10.4,
+          "smoking20Plus": 6,
+          "heavyDrinking": 10.2,
+          "mentalHealth": 11.9
+        },
+        "2019": {
+          "meanIncome": 13642,
+          "medianIncome": 11602,
+          "smokingLess20": 7.5,
+          "smoking20Plus": 4,
+          "heavyDrinking": 14.6,
+          "mentalHealth": 12.2
+        }
+      }
+    },
+    "RO": {
+      "name": "Romania",
+      "stats": {
+        "2014": {
+          "meanIncome": 4550,
+          "medianIncome": 4014,
+          "smokingLess20": 14.9,
+          "smoking20Plus": 4.9,
+          "heavyDrinking": 34.9,
+          "mentalHealth": 1.5
+        },
+        "2019": {
+          "meanIncome": 8420,
+          "medianIncome": 7338,
+          "smokingLess20": 13.3,
+          "smoking20Plus": 5.4,
+          "heavyDrinking": 35,
+          "mentalHealth": 1
+        }
+      }
+    },
+    "SK": {
+      "name": "Slovakia",
+      "stats": {
+        "2014": {
+          "meanIncome": 10777,
+          "medianIncome": 9806,
+          "smokingLess20": 17.6,
+          "smoking20Plus": 5,
+          "heavyDrinking": 12.8,
+          "mentalHealth": 4.2
+        },
+        "2019": {
+          "meanIncome": 11026,
+          "medianIncome": 10503,
+          "smokingLess20": 15.1,
+          "smoking20Plus": 5.3,
+          "heavyDrinking": 11.9,
+          "mentalHealth": 4.3
+        }
+      }
+    },
+    "SI": {
+      "name": "Slovenia",
+      "stats": {
+        "2014": {
+          "meanIncome": 15451,
+          "medianIncome": 14328,
+          "smokingLess20": 11.3,
+          "smoking20Plus": 6.7,
+          "heavyDrinking": 19,
+          "mentalHealth": 8.8
+        },
+        "2019": {
+          "meanIncome": 18016,
+          "medianIncome": 16633,
+          "smokingLess20": 10.7,
+          "smoking20Plus": 5.9,
+          "heavyDrinking": 22.7,
+          "mentalHealth": 7.9
+        }
+      }
+    },
+    "ES": {
+      "name": "Spain",
+      "stats": {
+        "2014": {
+          "meanIncome": 16480,
+          "medianIncome": 14195,
+          "smokingLess20": 15.4,
+          "smoking20Plus": 6.8,
+          "heavyDrinking": 9.3,
+          "mentalHealth": 7.8
+        },
+        "2019": {
+          "meanIncome": 18618,
+          "medianIncome": 16171,
+          "smokingLess20": 14.8,
+          "smoking20Plus": 4.9,
+          "heavyDrinking": 6,
+          "mentalHealth": 5.7
+        }
+      }
+    },
+    "SE": {
+      "name": "Sweden",
+      "stats": {
+        "2014": {
+          "meanIncome": 21114,
+          "medianIncome": 19529,
+          "smokingLess20": 7.5,
+          "smoking20Plus": 1.2,
+          "heavyDrinking": 20.4,
+          "mentalHealth": 9.6
+        },
+        "2019": {
+          "meanIncome": 21983,
+          "medianIncome": 20413,
+          "smokingLess20": 5.3,
+          "smoking20Plus": 1,
+          "heavyDrinking": 18.8,
+          "mentalHealth": 11.7
+        }
+      }
+    }
+  },
+  "notes": [
+    "Income values are in purchasing power standards per inhabitant.",
+    "Health indicators are percentages of the population covered by the European Health Interview Survey.",
+    "Daily smoking is split by reported cigarette consumption: less than 20 cigarettes per day and 20 or more cigarettes per day.",
+    "Heavy episodic drinking means more than 60g of pure ethanol on one occasion; the displayed value sums weekly and monthly-but-not-weekly responses."
+  ],
+  "sources": [
+    {
+      "label": "Eurostat Statistics API",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/"
+    },
+    {
+      "label": "Eurostat GISCO country boundaries",
+      "url": "https://gisco-services.ec.europa.eu/distribution/v2/countries/topojson/CNTR_RG_20M_2020_4326.json"
+    }
+  ]
+}
