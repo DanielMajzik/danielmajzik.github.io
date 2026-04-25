@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://danielmajzik.github.io/react-gh-pages",
+  "homepage": "https://danielmajzik.github.io/danielmajzik-github-io",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
