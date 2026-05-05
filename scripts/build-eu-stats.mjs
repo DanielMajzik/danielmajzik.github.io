@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, rm, writeFile } from 'node:fs/promises'
 
 const EU_COUNTRIES = [
   ['AT', 'Austria'],
@@ -35,9 +35,72 @@ const DATA_API =
   'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/'
 const MAP_URL =
   'https://gisco-services.ec.europa.eu/distribution/v2/countries/topojson/CNTR_RG_20M_2020_4326.json'
+const RAW_DATA_DIR = 'public/data/raw'
 
 const countryCodes = EU_COUNTRIES.map(([code]) => code)
 const countryNames = Object.fromEntries(EU_COUNTRIES)
+
+const datasetRequests = [
+  {
+    key: 'income',
+    dataset: 'ilc_di03',
+    filename: 'ilc_di03.csv',
+    params: {
+      freq: 'A',
+      age: 'TOTAL',
+      sex: 'T',
+      unit: 'PPS',
+      indic_il: ['MEI_E', 'MED_E'],
+      time: YEARS,
+      geo: countryCodes,
+    },
+  },
+  {
+    key: 'smoking',
+    dataset: 'hlth_ehis_sk3i',
+    filename: 'hlth_ehis_sk3i.csv',
+    params: {
+      freq: 'A',
+      age: 'TOTAL',
+      sex: 'T',
+      unit: 'PC',
+      smoking: ['SM_LT20D', 'SM_GE20D'],
+      quant_inc: 'TOTAL',
+      time: YEARS,
+      geo: countryCodes,
+    },
+  },
+  {
+    key: 'drinking',
+    dataset: 'hlth_ehis_al3i',
+    filename: 'hlth_ehis_al3i.csv',
+    params: {
+      freq: 'A',
+      age: 'TOTAL',
+      sex: 'T',
+      unit: 'PC',
+      frequenc: ['GE1W', 'MTH'],
+      quant_inc: 'TOTAL',
+      time: YEARS,
+      geo: countryCodes,
+    },
+  },
+  {
+    key: 'depression',
+    dataset: 'hlth_ehis_mh1i',
+    filename: 'hlth_ehis_mh1i.csv',
+    params: {
+      freq: 'A',
+      age: 'TOTAL',
+      sex: 'T',
+      unit: 'PC',
+      hlth_pb: 'DPR',
+      quant_inc: 'TOTAL',
+      time: YEARS,
+      geo: countryCodes,
+    },
+  },
+]
 
 function buildUrl(dataset, params) {
   const search = new URLSearchParams({ lang: 'en' })
@@ -95,56 +158,93 @@ function round(value, precision = 1) {
   return Math.round(value * factor) / factor
 }
 
-async function buildStats() {
-  const [income, smoking, drinking, depression] = await Promise.all([
-    fetchJson(
-      buildUrl('ilc_di03', {
-        freq: 'A',
-        age: 'TOTAL',
-        sex: 'T',
-        unit: 'PPS',
-        indic_il: ['MEI_E', 'MED_E'],
-        time: YEARS,
-        geo: countryCodes,
-      }),
-    ),
-    fetchJson(
-      buildUrl('hlth_ehis_sk3i', {
-        freq: 'A',
-        age: 'TOTAL',
-        sex: 'T',
-        unit: 'PC',
-        smoking: ['SM_LT20D', 'SM_GE20D'],
-        quant_inc: 'TOTAL',
-        time: YEARS,
-        geo: countryCodes,
-      }),
-    ),
-    fetchJson(
-      buildUrl('hlth_ehis_al3e', {
-        freq: 'A',
-        age: 'TOTAL',
-        sex: 'T',
-        unit: 'PC',
-        frequenc: ['GE1W', 'MTH'],
-        isced11: 'TOTAL',
-        time: YEARS,
-        geo: countryCodes,
-      }),
-    ),
-    fetchJson(
-      buildUrl('hlth_ehis_cd1e', {
-        freq: 'A',
-        age: 'TOTAL',
-        sex: 'T',
-        unit: 'PC',
-        hlth_pb: 'DPR_CHR',
-        isced11: 'TOTAL',
-        time: YEARS,
-        geo: countryCodes,
-      }),
-    ),
-  ])
+function getCategoryCodes(cube, dimension) {
+  const category = cube.dimension?.[dimension]?.category
+  const index = category?.index
+
+  if (!index || typeof index !== 'object' || Array.isArray(index)) {
+    return Object.keys(category?.label ?? {})
+  }
+
+  return Object.entries(index)
+    .sort(([, firstIndex], [, secondIndex]) => firstIndex - secondIndex)
+    .map(([code]) => code)
+}
+
+function decodeFlatIndex(flatIndex, sizes) {
+  const coordinates = new Array(sizes.length)
+  let remaining = flatIndex
+
+  for (let index = sizes.length - 1; index >= 0; index -= 1) {
+    coordinates[index] = remaining % sizes[index]
+    remaining = Math.floor(remaining / sizes[index])
+  }
+
+  return coordinates
+}
+
+function getObservationEntry(entries, flatIndex) {
+  if (Array.isArray(entries)) {
+    return entries[flatIndex]
+  }
+
+  return entries?.[flatIndex]
+}
+
+function escapeCsvValue(value) {
+  if (value === undefined || value === null) {
+    return ''
+  }
+
+  const text = String(value)
+
+  if (/[",\n\r]/.test(text)) {
+    return `"${text.replaceAll('"', '""')}"`
+  }
+
+  return text
+}
+
+function cubeToCsv(dataset, cube) {
+  const dimensionIds = cube.id
+  const sizes = cube.size
+  const categoryCodes = dimensionIds.map((dimension) =>
+    getCategoryCodes(cube, dimension),
+  )
+  const rowCount = sizes.reduce((total, size) => total * size, 1)
+  const lines = [['dataset', ...dimensionIds, 'value', 'status']]
+
+  for (let flatIndex = 0; flatIndex < rowCount; flatIndex += 1) {
+    const coordinates = decodeFlatIndex(flatIndex, sizes)
+    const dimensionValues = coordinates.map(
+      (categoryIndex, dimensionIndex) =>
+        categoryCodes[dimensionIndex][categoryIndex] ?? '',
+    )
+    const value = getObservationEntry(cube.value, flatIndex)
+    const status = getObservationEntry(cube.status, flatIndex)
+
+    lines.push([dataset, ...dimensionValues, value, status])
+  }
+
+  return `${lines
+    .map((row) => row.map(escapeCsvValue).join(','))
+    .join('\n')}\n`
+}
+
+async function fetchDatasetCubes() {
+  return Promise.all(
+    datasetRequests.map(async (request) => ({
+      ...request,
+      cube: await fetchJson(buildUrl(request.dataset, request.params)),
+    })),
+  )
+}
+
+function buildStats(fetchedDatasets) {
+  const datasetsByKey = Object.fromEntries(
+    fetchedDatasets.map((request) => [request.key, request.cube]),
+  )
+  const { income, smoking, drinking, depression } = datasetsByKey
 
   const countries = {}
 
@@ -161,7 +261,7 @@ async function buildStats() {
         sex: 'T',
         unit: 'PC',
         frequenc: 'GE1W',
-        isced11: 'TOTAL',
+        quant_inc: 'TOTAL',
         time,
         geo,
       })
@@ -171,7 +271,7 @@ async function buildStats() {
         sex: 'T',
         unit: 'PC',
         frequenc: 'MTH',
-        isced11: 'TOTAL',
+        quant_inc: 'TOTAL',
         time,
         geo,
       })
@@ -230,8 +330,8 @@ async function buildStats() {
             age: 'TOTAL',
             sex: 'T',
             unit: 'PC',
-            hlth_pb: 'DPR_CHR',
-            isced11: 'TOTAL',
+            hlth_pb: 'DPR',
+            quant_inc: 'TOTAL',
             time,
             geo,
           }),
@@ -273,14 +373,14 @@ async function buildStats() {
         id: 'heavyDrinking',
         label: 'Heavy episodic drinking at least monthly',
         unit: '%',
-        dataset: 'hlth_ehis_al3e',
+        dataset: 'hlth_ehis_al3i',
         calculation: 'GE1W + MTH',
       },
       {
         id: 'mentalHealth',
-        label: 'Self-reported chronic depression',
+        label: 'Current depressive symptoms',
         unit: '%',
-        dataset: 'hlth_ehis_cd1e',
+        dataset: 'hlth_ehis_mh1i',
       },
     ],
     countries,
@@ -300,7 +400,22 @@ async function buildStats() {
         url: MAP_URL,
       },
     ],
+    rawData: fetchedDatasets.map(({ dataset, filename, params }) => ({
+      dataset,
+      path: `/data/raw/${filename}`,
+      url: buildUrl(dataset, params),
+    })),
   }
+}
+
+async function buildRawCsvFiles(fetchedDatasets) {
+  await rm(RAW_DATA_DIR, { recursive: true, force: true })
+  await mkdir(RAW_DATA_DIR, { recursive: true })
+  await Promise.all(
+    fetchedDatasets.map(({ dataset, filename, cube }) =>
+      writeFile(`${RAW_DATA_DIR}/${filename}`, cubeToCsv(dataset, cube)),
+    ),
+  )
 }
 
 async function buildMap() {
@@ -329,13 +444,20 @@ async function main() {
   await mkdir('src/data', { recursive: true })
   await mkdir('public/data', { recursive: true })
 
-  const [stats, map] = await Promise.all([buildStats(), buildMap()])
+  const [fetchedDatasets, map] = await Promise.all([
+    fetchDatasetCubes(),
+    buildMap(),
+  ])
+  const stats = buildStats(fetchedDatasets)
 
-  await writeFile('src/data/euStats.json', `${JSON.stringify(stats, null, 2)}\n`)
-  await writeFile(
-    'public/data/eu-countries-2020.topojson.json',
-    `${JSON.stringify(map)}\n`,
-  )
+  await Promise.all([
+    buildRawCsvFiles(fetchedDatasets),
+    writeFile('src/data/euStats.json', `${JSON.stringify(stats, null, 2)}\n`),
+    writeFile(
+      'public/data/eu-countries-2020.topojson.json',
+      `${JSON.stringify(map)}\n`,
+    ),
+  ])
 }
 
 main().catch((error) => {
