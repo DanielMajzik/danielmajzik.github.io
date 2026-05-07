@@ -1,4 +1,9 @@
-import { COLORS, LATEST_YEAR, START_YEAR } from './chartData'
+import {
+  COLORS,
+  DEFAULT_INCOME_GROUP_LABEL,
+  LATEST_YEAR,
+  START_YEAR,
+} from './chartData'
 import { IncomeLineChart } from './IncomeLineChart'
 
 export function MedianIncomeChangeChart() {
@@ -6,7 +11,7 @@ export function MedianIncomeChangeChart() {
     <IncomeLineChart
       color={COLORS.orange}
       metricId="medianIncome"
-      subtitle={`Country lines compare ${START_YEAR} and ${LATEST_YEAR}; labels show each country's absolute change in PPS.`}
+      subtitle={`Country lines compare ${START_YEAR} and ${LATEST_YEAR} for ${DEFAULT_INCOME_GROUP_LABEL}; labels show each country's absolute change in PPS.`}
       title="Median Income Change"
     />
   )

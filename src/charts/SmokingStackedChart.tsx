@@ -2,6 +2,7 @@ import { ChartShell } from './ChartShell'
 import {
   COLORS,
   COUNTRY_DATA,
+  DEFAULT_GROUP_LABEL,
   LATEST_YEAR,
   formatPercent,
   getTicks,
@@ -64,7 +65,7 @@ export function SmokingStackedChart() {
           </span>
         </>
       }
-      subtitle={`${LATEST_YEAR} daily smokers, stacked by reported cigarettes per day. Totals are percentages of the population.`}
+      subtitle={`${LATEST_YEAR} daily smokers for ${DEFAULT_GROUP_LABEL}, stacked by reported cigarettes per day.`}
       title="Daily Smokers by Country"
     >
       <svg

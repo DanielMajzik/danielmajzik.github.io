@@ -2,6 +2,7 @@ import { ChartShell } from './ChartShell'
 import {
   COLORS,
   COUNTRY_DATA,
+  DEFAULT_INCOME_GROUP_LABEL,
   LATEST_YEAR,
   formatCompactPps,
   formatPps,
@@ -60,7 +61,7 @@ export function IncomeComparisonChart() {
           </span>
         </>
       }
-      subtitle={`${LATEST_YEAR} equivalised net income in purchasing power standards. Countries are sorted by median income.`}
+      subtitle={`${LATEST_YEAR} net income in purchasing power standards for ${DEFAULT_INCOME_GROUP_LABEL}. Countries are sorted by median income.`}
       title="Mean and Median Income"
     >
       <svg

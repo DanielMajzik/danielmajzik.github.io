@@ -11,9 +11,21 @@ export type MetricId =
 
 export type CountryStats = Record<MetricId, number | null>
 
+export type GroupDimensionId = 'age' | 'sex' | 'incomeQuintile'
+
+export type GroupSelection = Record<GroupDimensionId, string>
+
+export type DimensionOption = {
+  id: string
+  label: string
+}
+
+export type GroupDimensions = Record<GroupDimensionId, DimensionOption[]>
+
 export type CountryRecord = {
   name: string
   stats: Record<Year, CountryStats>
+  groupedStats?: Record<string, Record<Year, CountryStats>>
 }
 
 export type CountryDatum = CountryRecord & {
@@ -30,7 +42,13 @@ export type MetricDefinition = {
 
 export const START_YEAR: Year = '2014'
 export const LATEST_YEAR: Year = '2019'
+const STATS_DATA = euStats as typeof euStats & {
+  groupDimensions: GroupDimensions
+  defaultGroup: GroupSelection
+}
 export const METRICS = euStats.metrics as MetricDefinition[]
+export const GROUP_DIMENSIONS = STATS_DATA.groupDimensions
+export const DEFAULT_GROUP = STATS_DATA.defaultGroup
 export const COUNTRIES = euStats.countries as unknown as Record<
   string,
   CountryRecord
@@ -55,6 +73,28 @@ export const COLORS = {
   grid: '#cdd5ef',
   noData: '#e0e5f5',
 } as const
+
+function getDimensionLabel(
+  dimension: GroupDimensionId,
+  value: string,
+  fallback: string,
+) {
+  return (
+    GROUP_DIMENSIONS[dimension].find((option) => option.id === value)?.label ??
+    fallback
+  )
+}
+
+export const DEFAULT_INCOME_GROUP_LABEL = `${getDimensionLabel(
+  'age',
+  DEFAULT_GROUP.age,
+  DEFAULT_GROUP.age,
+)}, ${getDimensionLabel('sex', DEFAULT_GROUP.sex, DEFAULT_GROUP.sex).toLowerCase()}`
+export const DEFAULT_GROUP_LABEL = `${DEFAULT_INCOME_GROUP_LABEL}, ${getDimensionLabel(
+  'incomeQuintile',
+  DEFAULT_GROUP.incomeQuintile,
+  DEFAULT_GROUP.incomeQuintile,
+).toLowerCase()}`
 
 export function getMetricDefinition(metricId: MetricId) {
   return METRICS.find((metric) => metric.id === metricId) ?? METRICS[0]

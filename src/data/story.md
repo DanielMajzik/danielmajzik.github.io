@@ -4,7 +4,7 @@ Use this space to describe what the map shows about income, physical health, and
 
 ## Questions to explore
 
-- Did countries with higher **mean or median equivalised net income** also report lower smoking, heavy drinking, or depressive symptoms?
+- Did countries with higher **mean or median net income** also report lower smoking, heavy drinking, or depressive symptoms?
 - Which countries changed the most between **2014** and **2019**?
 - Are improvements in income mirrored by improvements in physical and mental health indicators?
 
