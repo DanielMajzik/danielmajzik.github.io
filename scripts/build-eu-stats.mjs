@@ -42,6 +42,7 @@ const SEX_GROUPS = [
   { id: 'M', label: 'Males' },
   { id: 'F', label: 'Females' },
 ]
+const SEX_OPTIONS = [{ id: 'T', label: 'Total' }, ...SEX_GROUPS]
 const INCOME_QUINTILES = [
   { id: 'QU1', label: 'First quintile' },
   { id: 'QU2', label: 'Second quintile' },
@@ -49,12 +50,17 @@ const INCOME_QUINTILES = [
   { id: 'QU4', label: 'Fourth quintile' },
   { id: 'QU5', label: 'Fifth quintile' },
 ]
+const INCOME_QUINTILE_OPTIONS = [
+  { id: 'TOTAL', label: 'Total' },
+  ...INCOME_QUINTILES,
+]
 const GROUP_AGES = [
   { id: 'Y18-24', label: 'From 18 to 24 years' },
   { id: 'Y55-64', label: 'From 55 to 64 years' },
   { id: 'Y65-74', label: 'From 65 to 74 years' },
   { id: 'Y_GE75', label: '75 years or over' },
 ]
+const AGE_OPTIONS = [{ id: 'TOTAL', label: 'Total' }, ...GROUP_AGES]
 const INCOME_AGE_CODES = [
   'Y_LT6',
   'Y6-10',
@@ -125,9 +131,9 @@ const HEALTH_AGE_CODES = [
   'Y_GE75',
 ]
 const DEFAULT_GROUP = {
-  age: 'Y55-64',
-  sex: 'M',
-  incomeQuintile: 'QU3',
+  age: 'TOTAL',
+  sex: 'T',
+  incomeQuintile: 'TOTAL',
 }
 
 const countryCodes = EU_COUNTRIES.map(([code]) => code)
@@ -157,6 +163,15 @@ const HISTORICAL_CURRENCIES = {
     2014: { code: 'LTL', name: 'Lithuanian litas', symbol: 'Lt' },
   },
 }
+const METRIC_IDS = [
+  'meanIncome',
+  'medianIncome',
+  'smokingLess20',
+  'smoking20Plus',
+  'heavyDrinking',
+  'mentalHealth',
+]
+const INCOME_METRIC_IDS = ['meanIncome', 'medianIncome']
 
 const datasetRequests = [
   {
@@ -551,6 +566,82 @@ function buildCountryYearStats(datasets, currencyMetadata, geo, time, group) {
   }
 }
 
+function getDetailIds(options, selectedId) {
+  if (selectedId === 'TOTAL') {
+    return options.map(({ id }) => id)
+  }
+
+  if (selectedId === 'T') {
+    return options.map(({ id }) => id)
+  }
+
+  return [selectedId]
+}
+
+function averageNumbers(values, precision) {
+  const numericValues = values.filter((value) => typeof value === 'number')
+
+  if (numericValues.length === 0) {
+    return null
+  }
+
+  return round(
+    numericValues.reduce((sum, value) => sum + value, 0) / numericValues.length,
+    precision,
+  )
+}
+
+function buildAggregatedYearStats(groupedStats, currencyMetadata, geo, time, group) {
+  const ageIds = getDetailIds(GROUP_AGES, group.age)
+  const sexIds = getDetailIds(SEX_GROUPS, group.sex)
+  const incomeQuintileIds = getDetailIds(
+    INCOME_QUINTILES,
+    group.incomeQuintile,
+  )
+  const detailStats = ageIds.flatMap((age) =>
+    sexIds.flatMap((sex) =>
+      incomeQuintileIds.map(
+        (incomeQuintile) =>
+          groupedStats[buildGroupKey({ age, sex, incomeQuintile })]?.[time],
+      ),
+    ),
+  )
+  const nationalCurrency = getNationalCurrencyMetadata(currencyMetadata, geo, time)
+  const aggregate = Object.fromEntries(
+    METRIC_IDS.map((metricId) => [
+      metricId,
+      averageNumbers(
+        detailStats.map((stats) => stats?.[metricId]),
+        INCOME_METRIC_IDS.includes(metricId) ? 0 : 1,
+      ),
+    ]),
+  )
+
+  aggregate.incomeCurrencies = Object.fromEntries(
+    INCOME_METRIC_IDS.map((metricId) => [
+      metricId,
+      {
+        eur: averageNumbers(
+          detailStats.map((stats) => stats?.incomeCurrencies?.[metricId]?.eur),
+          0,
+        ),
+        nationalCurrency: averageNumbers(
+          detailStats.map(
+            (stats) =>
+              stats?.incomeCurrencies?.[metricId]?.nationalCurrency,
+          ),
+          0,
+        ),
+        nationalCurrencyCode: nationalCurrency.code,
+        nationalCurrencyName: nationalCurrency.name,
+        nationalCurrencySymbol: nationalCurrency.symbol ?? null,
+      },
+    ]),
+  )
+
+  return aggregate
+}
+
 function buildStats(fetchedDatasets, currencyMetadata) {
   const datasetsByKey = Object.fromEntries(
     fetchedDatasets.map((request) => [request.key, request.cube]),
@@ -586,6 +677,38 @@ function buildStats(fetchedDatasets, currencyMetadata) {
       })
     })
 
+    AGE_OPTIONS.forEach((age) => {
+      SEX_OPTIONS.forEach((sex) => {
+        INCOME_QUINTILE_OPTIONS.forEach((incomeQuintile) => {
+          if (
+            age.id !== 'TOTAL' &&
+            sex.id !== 'T' &&
+            incomeQuintile.id !== 'TOTAL'
+          ) {
+            return
+          }
+
+          const group = {
+            age: age.id,
+            sex: sex.id,
+            incomeQuintile: incomeQuintile.id,
+          }
+          const groupKey = buildGroupKey(group)
+
+          groupedStats[groupKey] = {}
+          YEARS.forEach((time) => {
+            groupedStats[groupKey][time] = buildAggregatedYearStats(
+              groupedStats,
+              currencyMetadata,
+              geo,
+              time,
+              group,
+            )
+          })
+        })
+      })
+    })
+
     countries[geo] = {
       name,
       nationalCurrencies: Object.fromEntries(
@@ -604,9 +727,9 @@ function buildStats(fetchedDatasets, currencyMetadata) {
     coverage: 'Current EU-27 member states',
     years: YEARS,
     groupDimensions: {
-      age: GROUP_AGES,
-      sex: SEX_GROUPS,
-      incomeQuintile: INCOME_QUINTILES,
+      age: AGE_OPTIONS,
+      sex: SEX_OPTIONS,
+      incomeQuintile: INCOME_QUINTILE_OPTIONS,
     },
     defaultGroup: DEFAULT_GROUP,
     currencyMetadata: Object.fromEntries(
@@ -660,6 +783,7 @@ function buildStats(fetchedDatasets, currencyMetadata) {
       'Daily smoking is split by reported cigarette consumption: less than 20 cigarettes per day and 20 or more cigarettes per day.',
       'Heavy episodic drinking means more than 60g of pure ethanol on one occasion; the displayed value sums weekly and monthly-but-not-weekly responses.',
       'Fetched observations exclude Eurostat total categories for age, sex, and income quintile.',
+      'Total age, sex, and income-quintile groups are calculated from the fetched detailed rows as unweighted averages.',
       'The income dataset is grouped by age and sex; Eurostat does not expose an income-quintile dimension for mean and median net income in ilc_di03.',
     ],
     sources: [
