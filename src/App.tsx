@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import './App.css'
+import { getChartComponent } from './charts/chartRegistry'
 import euStats from './data/euStats.json'
 import storyMarkdown from './data/story.md?raw'
 
@@ -71,6 +72,10 @@ type MarkdownBlock =
   | {
       type: 'list'
       items: string[]
+    }
+  | {
+      type: 'chart'
+      name: string
     }
 
 const MAP_URL = `${import.meta.env.BASE_URL}data/eu-countries-2020.topojson.json`
@@ -234,10 +239,21 @@ function parseMarkdown(markdown: string) {
 
   lines.forEach((line) => {
     const trimmed = line.trim()
+    const chartMatch = trimmed.match(/^chart\(([-a-zA-Z0-9_]+)\)$/)
 
     if (!trimmed) {
       flushParagraph()
       flushList()
+      return
+    }
+
+    if (chartMatch) {
+      flushParagraph()
+      flushList()
+      blocks.push({
+        type: 'chart',
+        name: chartMatch[1],
+      })
       return
     }
 
@@ -299,6 +315,20 @@ function MarkdownContent({ markdown }: { markdown: string }) {
               ))}
             </ul>
           )
+        }
+
+        if (block.type === 'chart') {
+          const ChartComponent = getChartComponent(block.name)
+
+          if (!ChartComponent) {
+            return (
+              <p className="chart-missing" key={`chart-${block.name}-${index}`}>
+                Chart "{block.name}" is not registered.
+              </p>
+            )
+          }
+
+          return <ChartComponent key={`chart-${block.name}-${index}`} />
         }
 
         return (

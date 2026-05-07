@@ -12,4 +12,18 @@ Use this space to describe what the map shows about income, physical health, and
 
 Between 2014 and 2019, income levels changed across the EU, but health indicators did not always move in the same direction. The comparison should highlight where higher income appears to align with better health outcomes, and where the relationship is weaker or more complex.
 
+chart(income-comparison)
+
+chart(mean-income-change)
+
+chart(median-income-change)
+
+## Health indicators
+
+chart(smoking-stacked)
+
+chart(drinking)
+
+chart(depressive-symptoms)
+
 Add country examples here after reviewing the map.
