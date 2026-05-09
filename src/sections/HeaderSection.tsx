@@ -5,7 +5,7 @@ export function HeaderSection() {
     <header className="app-header">
       <div>
         <p className="eyebrow">Eurostat 2014 and 2019</p>
-        <h1>EU Health and Income Map</h1>
+        <h1>How does the income affect health outcomes?</h1>
       </div>
       <div className="source-line">
         <span>{getCoverage()}</span>
