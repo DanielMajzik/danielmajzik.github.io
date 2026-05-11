@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+import { GapEvolutionChart } from '../charts/GapEvolutionChart'
 import {
   formatPercentNumber,
   getGapRows,
@@ -12,15 +14,23 @@ function SectionHeader({
 }: {
   kicker: string
   title: string
-  copy: string
+  copy?: string
 }) {
   return (
     <div className="narrative-heading">
       <p className="section-kicker">{kicker}</p>
       <h2>{title}</h2>
-      <p>{copy}</p>
+      {copy ? <p>{copy}</p> : null}
     </div>
   )
+}
+
+function StoryCopy({ children }: { children: ReactNode }) {
+  return <div className="story-copy">{children}</div>
+}
+
+function formatGapValue(value: number | null | undefined) {
+  return typeof value === 'number' ? `${formatPercentNumber(value)} pp` : 'No data'
 }
 
 function NotebookLayerMap() {
@@ -92,47 +102,45 @@ export function StorySection() {
   return (
     <>
       <section className="narrative-section hook-section" id="hook">
-        <SectionHeader
-          copy=""
-          kicker="01 Hook"
-          title="Health inequality is visible before you pick a country."
-        />
-        <p>
-          It can be wondered whether economic inequality affects more than just financial opportunities. 
-          Is there potentially a link between average income and overall well-being? 
-          It can be asked whether it also influences people’s mental and physical health. 
-          Income may shape habits such as smoking and alcohol consumption, while lower-income groups across Europe often report worse mental health outcomes and higher rates of unhealthy coping behaviors.   
-
-          This project explores the relationship between income inequality, depression, smoking, and drinking across European countries. 
-          By combining multiple datasets and visualizations, the analysis investigates whether lower income is associated with negative health outcomes and how these patterns vary geographically and over time.
-        </p>
+        <div className="story-intro">
+          <SectionHeader
+            kicker="01 Hook"
+            title="Health inequality is visible before you pick a country."
+          />
+          <StoryCopy>
+            <p>
+              It can be wondered whether economic inequality affects more than
+              just financial opportunities. Is there potentially a link between
+              average income and overall well-being? It can be asked whether it
+              also influences people’s mental and physical health. Income may
+              shape habits such as smoking and alcohol consumption, while
+              lower-income groups across Europe often report worse mental health
+              outcomes and higher rates of unhealthy coping behaviors.
+            </p>
+            <p>
+              This project explores the relationship between income inequality,
+              depression, smoking, and drinking across European countries. By
+              combining multiple datasets and visualizations, the analysis
+              investigates whether lower income is associated with negative health
+              outcomes and how these patterns vary geographically and over time.
+            </p>
+          </StoryCopy>
+        </div>
 
         <div className="hook-stat-grid" aria-label="Key findings">
           <div>
             <span>Smoking gap</span>
-            <strong>
-              {smokingGap?.end
-                ? `${formatPercentNumber(smokingGap.end)} pp`
-                : 'No data'}
-            </strong>
+            <strong>{formatGapValue(smokingGap?.end)}</strong>
             <p>Higher rate in the first income quintile than in the fifth.</p>
           </div>
           <div>
             <span>Drinking gap</span>
-            <strong>
-              {drinkingGap?.end
-                ? `${formatPercentNumber(drinkingGap.end)} pp`
-                : 'No data'}
-            </strong>
+            <strong>{formatGapValue(drinkingGap?.end)}</strong>
             <p>Higher rate in the fifth income quintile than in the first.</p>
           </div>
           <div>
             <span>Depression gap</span>
-            <strong>
-              {depressionGap?.end
-                ? `${formatPercentNumber(depressionGap.end)} pp`
-                : 'No data'}
-            </strong>
+            <strong>{formatGapValue(depressionGap?.end)}</strong>
             <p>Higher rate in the first income quintile than in the fifth.</p>
           </div>
         </div>
@@ -140,71 +148,114 @@ export function StorySection() {
 
       <section className="narrative-section" id="main-finding">
         <SectionHeader
-          copy=""
           kicker="02 Main Finding"
           title="Income quintile changes the shape of each health outcome."
         />
-        <p>
-          Our first visualization compares income quintiles with mental health outcomes across Europe. 
-          Looking at the data, a clear social difference is shown; individuals in lower income groups consistently report higher levels of depression and poorer overall well-being compared to higher income groups. 
-
-          The multi-line chart shows that health inequality is not evenly distributed. 
-          As income increases, negative health outcomes generally decrease, suggesting a strong correlation between economic status and mental health. 
-
-          This data supports the idea that financial insecurity may contribute to stress and thus, unhealthy coping mechanisms such as heavy alcohol consumption and smoking. 
-        </p>
+        <StoryCopy>
+          <p>
+            Our first visualization compares income quintiles with mental health
+            outcomes across Europe. Looking at the data, a clear social
+            difference is shown; individuals in lower income groups consistently
+            report higher levels of depression and poorer overall well-being
+            compared to higher income groups.
+          </p>
+          <p>
+            The multi-line chart shows that health inequality is not evenly
+            distributed. As income increases, negative health outcomes generally
+            decrease, suggesting a strong correlation between economic status and
+            mental health.
+          </p>
+          <p>
+            This data supports the idea that financial insecurity may contribute
+            to stress and thus, unhealthy coping mechanisms such as heavy alcohol
+            consumption and smoking.
+          </p>
+        </StoryCopy>
         <NotebookRelativeShareDiagram />
       </section>
 
       <section className="narrative-section" id="geographic-pattern">
         <SectionHeader
-          copy=""
           kicker="03 Geographic Pattern"
           title="Countries do not share one inequality profile."
         />
-        <p>
-          While income inequality exists across Europe, its impacts of the social well-being of countries vary greatly. 
-          The heatmap reveals regional patterns in smoking, alcohol consumption, and depression rates. 
-          Northern and Eastern European countries show different behavioral trends compared to Southern Europe, suggesting that cultural norms, healthcare systems, and social policies may influence how people respond to economic stress. 
-
-          Darker colors show higher rates, while lighter colors show lower rates. 
-          By switching between smoking, drinking, and depression tabs, you can explore how these issues overlap geographically and identify countries where certain behaviors are especially pronounced. 
-        </p>
+        <StoryCopy>
+          <p>
+            While income inequality exists across Europe, its impacts of the
+            social well-being of countries vary greatly. The heatmap reveals
+            regional patterns in smoking, alcohol consumption, and depression
+            rates.
+          </p>
+          <p>
+            Northern and Eastern European countries show different behavioral
+            trends compared to Southern Europe, suggesting that cultural norms,
+            healthcare systems, and social policies may influence how people
+            respond to economic stress.
+          </p>
+          <p>
+            Darker colors show higher rates, while lighter colors show lower
+            rates. By switching between smoking, drinking, and depression tabs,
+            you can explore how these issues overlap geographically and identify
+            countries where certain behaviors are especially pronounced.
+          </p>
+        </StoryCopy>
         <NotebookLayerMap />
       </section>
 
       <section className="narrative-section" id="time-evolution">
         <SectionHeader
-          copy=""
           kicker="04 Time Evolution"
           title="The gaps did not all move in the same direction."
         />
-        <p>
-          To understand whether these inequalities are changing over time, we compare data from 2014 and 2019. 
-          The visualizations show that in several countries, the gap between income groups either increased or remained stable. 
-          This change or lack of change in economic growth implies that economic growth alone does not necessarily reduce health inequality. 
-          In certain cases, improvements in overall living standards may benefit higher-income groups more than lower-income populations. 
-
-          Tracking these changes over time helps reveal whether European countries are moving toward greater equality or deeper social divides. 
-        </p>
+        <StoryCopy>
+          <p>
+            To understand whether these inequalities are changing over time, we
+            compare data from 2014 and 2019. The visualizations show that in
+            several countries, the gap between income groups either increased or
+            remained stable.
+          </p>
+          <p>
+            This change or lack of change in economic growth implies that
+            economic growth alone does not necessarily reduce health inequality.
+            In certain cases, improvements in overall living standards may
+            benefit higher-income groups more than lower-income populations.
+          </p>
+          <p>
+            Tracking these changes over time helps reveal whether European
+            countries are moving toward greater equality or deeper social divides.
+          </p>
+        </StoryCopy>
+        <GapEvolutionChart />
+      </section>
 
       <section className="narrative-section" id="country-exception">
         <SectionHeader
-          copy=""
           kicker="05 Country Exception"
           title="Turkey reverses the smoking gradient."
         />
-        <p>
-          Furthermore, we compared the highest median income country, Norway, with the lowest median income country, Turkey, to further explore the health and income disparity.  
-
-          Turkey stands out as an interesting exception, as unlike the other European countries mapped, smoking behavior does not follow the same income-related pattern.  
-
-          Lower income groups tend to smoke more across Europe, however, in Turkey a weaker or reversed relationship is shown. 
-          This suggests that there are other factors that contribute to the results of the data.  
-
-          This exception highlights why it is important to take context and culture into consideration when analyzing data. 
-          While broad trends across Europe may exist, individual countries may challenge the consensus by revealing a more complex social dynamic. 
-        </p>
+        <StoryCopy>
+          <p>
+            Furthermore, we compared the highest median income country, Norway,
+            with the lowest median income country, Turkey, to further explore the
+            health and income disparity.
+          </p>
+          <p>
+            Turkey stands out as an interesting exception, as unlike the other
+            European countries mapped, smoking behavior does not follow the same
+            income-related pattern.
+          </p>
+          <p>
+            Lower income groups tend to smoke more across Europe, however, in
+            Turkey a weaker or reversed relationship is shown. This suggests that
+            there are other factors that contribute to the results of the data.
+          </p>
+          <p>
+            This exception highlights why it is important to take context and
+            culture into consideration when analyzing data. While broad trends
+            across Europe may exist, individual countries may challenge the
+            consensus by revealing a more complex social dynamic.
+          </p>
+        </StoryCopy>
         <CountryExceptionHealthDiagram />
       </section>
     </>
