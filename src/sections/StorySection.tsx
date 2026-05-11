@@ -95,19 +95,16 @@ export function StorySection() {
     <>
       <section className="narrative-section hook-section" id="hook">
         <SectionHeader
-          copy="Across Europe, income and health move together in some places and split apart in others. The pattern is clearest when the population is grouped by income quintile: smoking and depressive symptoms are higher in lower-income groups, while heavy episodic drinking tilts toward higher-income groups."
+          copy="It can be wondered whether economic inequality affects more than just financial opportunities. 
+          Is there potentially a link between average income and overall well-being? 
+          It can be asked whether it also influences people’s mental and physical health. 
+          Income may shape habits such as smoking and alcohol consumption, while lower-income groups across Europe often report worse mental health outcomes and higher rates of unhealthy coping behaviors.
+
+          This project explores the relationship between income inequality, depression, smoking, and drinking across European countries. 
+          By combining multiple datasets and visualizations, the analysis investigates whether lower income is associated with negative health outcomes and how these patterns vary geographically and over time."
           kicker="01 Hook"
           title="Health inequality is visible before you pick a country."
         />
-        <p>
-          It can be wondered whether economic inequality affects more than just financial opportunities. Is there potentially a link between average income and overall well-being? 
-          It can be asked whether it can also influence people’s mental and physical well-being. 
-          Perhaps, it is a leading factor in shaping habits such as smoking and alcohol consumption. 
-          Across Europe, lower-income groups often report worse mental health outcomes and higher rates of unhealthy coping behaviors. 
-
-          This project explores the relationship between income inequality, depression, smoking, and drinking across European countries. 
-          By combining multiple datasets and visualizations, we aim to understand whether lower income is associated with negative health outcomes and how these patterns vary geographically and over time. 
-        </p>
 
         <div className="hook-stat-grid" aria-label="Key findings">
           <div>
