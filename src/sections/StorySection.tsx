@@ -1,4 +1,3 @@
-import { GapEvolutionChart } from '../charts/GapEvolutionChart'
 import {
   formatPercentNumber,
   getGapRows,
@@ -188,7 +187,7 @@ export function StorySection() {
 
           Tracking these changes over time helps reveal whether European countries are moving toward greater equality or deeper social divides. 
         </p>
-        <figure class="full-width">
+        <figure>
             <img src="health_comparison_2014_2019.png" alt="Comparison of health outcomes between 2014 and 2019, showing the evolution of the gap between income quintiles for smoking, drinking, and depression across European countries." />
             <figcaption>
                 <strong>Figure 1.</strong> ...
