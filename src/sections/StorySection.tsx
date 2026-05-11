@@ -98,43 +98,13 @@ export function StorySection() {
           copy="It can be wondered whether economic inequality affects more than just financial opportunities. 
           Is there potentially a link between average income and overall well-being? 
           It can be asked whether it also influences people’s mental and physical health. 
-          Income may shape habits such as smoking and alcohol consumption, while lower-income groups across Europe often report worse mental health outcomes and higher rates of unhealthy coping behaviors.
+          Income may shape habits such as smoking and alcohol consumption, while lower-income groups across Europe often report worse mental health outcomes and higher rates of unhealthy coping behaviors.  
 
           This project explores the relationship between income inequality, depression, smoking, and drinking across European countries. 
           By combining multiple datasets and visualizations, the analysis investigates whether lower income is associated with negative health outcomes and how these patterns vary geographically and over time."
           kicker="01 Hook"
           title="Health inequality is visible before you pick a country."
         />
-
-        <div className="hook-stat-grid" aria-label="Key findings">
-          <div>
-            <span>Smoking gap</span>
-            <strong>
-              {smokingGap?.end
-                ? `${formatPercentNumber(smokingGap.end)} pp`
-                : 'No data'}
-            </strong>
-            <p>Higher rate in the first income quintile than in the fifth.</p>
-          </div>
-          <div>
-            <span>Drinking gap</span>
-            <strong>
-              {drinkingGap?.end
-                ? `${formatPercentNumber(drinkingGap.end)} pp`
-                : 'No data'}
-            </strong>
-            <p>Higher rate in the fifth income quintile than in the first.</p>
-          </div>
-          <div>
-            <span>Depression gap</span>
-            <strong>
-              {depressionGap?.end
-                ? `${formatPercentNumber(depressionGap.end)} pp`
-                : 'No data'}
-            </strong>
-            <p>Higher rate in the first income quintile than in the fifth.</p>
-          </div>
-        </div>
       </section>
 
       <section className="narrative-section" id="main-finding">
