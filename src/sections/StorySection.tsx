@@ -1,5 +1,4 @@
 import { GapEvolutionChart } from '../charts/GapEvolutionChart'
-import { TurkeySmokingException } from '../charts/TurkeySmokingException'
 import {
   formatPercentNumber,
   formatSignedPointDelta,
@@ -41,6 +40,26 @@ function NotebookLayerMap() {
         loading="eager"
         src={`${NOTEBOOK_DIAGRAM_BASE}geographic-pattern-map.html`}
         title="Three-layer OpenStreetMap from explainer notebook"
+      />
+    </figure>
+  )
+}
+
+function CountryExceptionHealthDiagram() {
+  return (
+    <figure className="notebook-diagram">
+      <div>
+        <h3>Health Behaviours & Mental Health by Income Quintile</h3>
+        <p>
+          Norway and Türkiye are compared as the highest- and lowest-median
+          income countries in the health datasets, highlighting Turkey's
+          different smoking pattern alongside drinking and depressive symptoms.
+        </p>
+      </div>
+      <img
+        alt="Health Behaviours and Mental Health by Income Quintile for Norway and Türkiye"
+        loading="eager"
+        src={`${NOTEBOOK_DIAGRAM_BASE}country-exception-health-behaviours.png`}
       />
     </figure>
   )
@@ -153,7 +172,7 @@ export function StorySection() {
           kicker="05 Country Exception"
           title="Turkey reverses the smoking gradient."
         />
-        <TurkeySmokingException />
+        <CountryExceptionHealthDiagram />
       </section>
     </>
   )
