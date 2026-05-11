@@ -95,6 +95,7 @@ export function StorySection() {
     <>
       <section className="narrative-section hook-section" id="hook">
         <SectionHeader
+          copy=""
           kicker="01 Hook"
           title="Health inequality is visible before you pick a country."
         />
