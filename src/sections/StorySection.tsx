@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { GapEvolutionChart } from '../charts/GapEvolutionChart'
 import {
   formatPercentNumber,
   getGapRows,
@@ -88,6 +87,25 @@ function NotebookRelativeShareDiagram() {
         alt="Relative Share of Health Burden by Income Quintile Across European Countries"
         loading="eager"
         src={`${NOTEBOOK_DIAGRAM_BASE}notebook-figure-05.png`}
+      />
+    </figure>
+  )
+}
+
+function HealthOutcomesComparisonDiagram() {
+  return (
+    <figure className="notebook-diagram">
+      <div>
+        <h3>Comparison of Health Outcomes (2014 vs 2019)</h3>
+        <p>
+          Notebook comparison of smoking, heavy drinking, and depressive symptoms
+          for the top three highest and lowest median income countries.
+        </p>
+      </div>
+      <img
+        alt="Comparison of Health Outcomes from 2014 to 2019 for the top three highest and lowest median income countries"
+        loading="eager"
+        src={`${NOTEBOOK_DIAGRAM_BASE}health-comparison-2014-2019.png`}
       />
     </figure>
   )
@@ -225,7 +243,7 @@ export function StorySection() {
             countries are moving toward greater equality or deeper social divides.
           </p>
         </StoryCopy>
-        <GapEvolutionChart />
+        <HealthOutcomesComparisonDiagram />
       </section>
 
       <section className="narrative-section" id="country-exception">
