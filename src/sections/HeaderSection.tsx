@@ -1,4 +1,4 @@
-import { getCoverage, getGeneratedDate } from '../appData'
+import { getCoverage } from '../appData'
 
 export function HeaderSection() {
   return (
@@ -43,14 +43,6 @@ export function HeaderSection() {
           </div>
         </div>
 
-        <p className="title-panel-copy">
-          Move slide by slide from the headline gap to the map, the exception,
-          and the interactive country explorer.
-        </p>
-
-        <div className="source-line">
-          <span>Generated {getGeneratedDate()}</span>
-        </div>
       </div>
     </header>
   )

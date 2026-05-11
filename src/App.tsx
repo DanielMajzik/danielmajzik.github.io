@@ -18,6 +18,7 @@ import { HeaderSection } from './sections/HeaderSection'
 import { MapSection } from './sections/MapSection'
 import {
   CountryExceptionSection,
+  DatasetSection,
   GeographicPatternSection,
   HookSection,
   MainFindingSection,
@@ -166,6 +167,12 @@ function App() {
       label: 'Reflect',
       teaser: 'Close with what the charts support and what remains uncertain.',
       content: <ReflectionSection />,
+    },
+    {
+      id: 'dataset',
+      label: 'Dataset',
+      teaser: 'Describe the source data, measures, and aggregation choices.',
+      content: <DatasetSection />,
     },
   ]
   const slideCount = slides.length

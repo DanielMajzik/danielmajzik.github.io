@@ -3,6 +3,7 @@ import {
   formatPercentNumber,
   getGapRows,
 } from '../charts/healthStoryData'
+import { getCoverage } from '../appData'
 
 const NOTEBOOK_DIAGRAM_BASE = `${import.meta.env.BASE_URL}notebook-diagrams/`
 
@@ -306,28 +307,100 @@ export function StorySection() {
 }
 
 export function ReflectionSection() {
+  const gaps = getGapRows()
+  const smokingGap = gaps.find((gap) => gap.id === 'smoking')
+  const drinkingGap = gaps.find((gap) => gap.id === 'drinking')
+  const depressionGap = gaps.find((gap) => gap.id === 'depression')
+
   return (
     <section className="narrative-section reflection-section" id="reflection">
       <SectionHeader
-        copy="The income gradient is strongest for depressive symptoms, visible but smaller for smoking, and reversed for heavy episodic drinking. That makes the story less about income alone and more about how behavior, reporting, age structure, and national context interact."
+        copy="The analysis shows a clear income gradient for depressive symptoms and daily smoking, but heavy episodic drinking moves in the opposite direction. Income helps reveal unequal outcomes, while geography and national context explain why the pattern is not uniform."
         kicker="07 Discussion / Reflection"
         title="The map is an entry point, not the explanation."
       />
 
       <div className="reflection-grid">
         <div>
-          <h3>What the charts support</h3>
+          <h3>Strongest pattern</h3>
           <p>
-            Income quintile is a useful lens for identifying unequal health
-            outcomes, especially for depressive symptoms and daily smoking.
+            Depressive symptoms show the clearest inequality signal: in 2019,
+            the first income quintile was {formatGapValue(depressionGap?.end)}
+            above the fifth quintile in the country-average view.
+          </p>
+        </div>
+        <div>
+          <h3>Health behavior split</h3>
+          <p>
+            Daily smoking also remains higher in lower-income groups, with a
+            2019 gap of {formatGapValue(smokingGap?.end)}. Heavy episodic
+            drinking reverses the direction, sitting {formatGapValue(drinkingGap?.end)}
+            higher in the fifth income quintile.
+          </p>
+        </div>
+        <div>
+          <h3>Why place matters</h3>
+          <p>
+            The country maps and the Norway-Turkey comparison show that national
+            context can weaken, amplify, or reverse the broad income gradient.
+            Culture, age structure, health policy, and reporting behavior may
+            shape the observed rates.
           </p>
         </div>
         <div>
           <h3>What remains uncertain</h3>
           <p>
-            These views are descriptive. They do not isolate causality, survey
-            design effects, or the policy and cultural drivers behind each
-            national pattern.
+            These views are descriptive rather than causal. The data identifies
+            associations by country and income group, but it does not isolate the
+            mechanisms behind each pattern or prove that income alone causes the
+            health differences.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function DatasetSection() {
+  return (
+    <section className="narrative-section reflection-section dataset-section" id="dataset">
+      <SectionHeader
+        copy="The analysis combines Eurostat income data with European Health Interview Survey health indicators, then compares countries, income quintiles, and change between two survey years."
+        kicker="08 Dataset"
+        title="What data is behind the analysis?"
+      />
+
+      <div className="reflection-grid">
+        <div>
+          <h3>Coverage</h3>
+          <p>
+            The interactive map covers {getCoverage()} for 2014 and 2019. The
+            country-exception slide also uses Eurostat health observations for
+            Norway and Turkey.
+          </p>
+        </div>
+        <div>
+          <h3>Income measures</h3>
+          <p>
+            Mean and median net income come from Eurostat dataset ilc_di03 and
+            are shown in purchasing power standards, making country values more
+            comparable.
+          </p>
+        </div>
+        <div>
+          <h3>Health indicators</h3>
+          <p>
+            Smoking comes from hlth_ehis_sk3i, heavy episodic drinking from
+            hlth_ehis_al3i, and current depressive symptoms from
+            hlth_ehis_mh1i.
+          </p>
+        </div>
+        <div>
+          <h3>Aggregation</h3>
+          <p>
+            Health indicators are percentages by age, sex, and income quintile.
+            Total groups and country averages are descriptive, unweighted
+            averages of available observations.
           </p>
         </div>
       </div>
