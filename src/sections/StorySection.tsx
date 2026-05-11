@@ -1,12 +1,12 @@
 import { GapEvolutionChart } from '../charts/GapEvolutionChart'
-import { GeographicHeatmap } from '../charts/GeographicHeatmap'
-import { HealthQuintileLineChart } from '../charts/HealthQuintileLineChart'
 import { TurkeySmokingException } from '../charts/TurkeySmokingException'
 import {
   formatPercentNumber,
   formatSignedPointDelta,
   getGapRows,
 } from '../charts/healthStoryData'
+
+const NOTEBOOK_DIAGRAM_BASE = `${import.meta.env.BASE_URL}notebook-diagrams/`
 
 function SectionHeader({
   kicker,
@@ -23,6 +23,46 @@ function SectionHeader({
       <h2>{title}</h2>
       <p>{copy}</p>
     </div>
+  )
+}
+
+function NotebookLayerMap() {
+  return (
+    <figure className="notebook-map-card">
+      <div>
+        <h3>Notebook: Three-Layer OpenStreetMap</h3>
+        <p>
+          Folium map from the explainer notebook with separate layers for
+          smoking, heavy drinking, and depressive symptoms. Use the map layer
+          control to switch between outcomes.
+        </p>
+      </div>
+      <iframe
+        loading="eager"
+        src={`${NOTEBOOK_DIAGRAM_BASE}geographic-pattern-map.html`}
+        title="Three-layer OpenStreetMap from explainer notebook"
+      />
+    </figure>
+  )
+}
+
+function NotebookRelativeShareDiagram() {
+  return (
+    <figure className="notebook-diagram">
+      <div>
+        <h3>Relative Share of Health Burden by Income Quintile</h3>
+        <p>
+          Notebook burden-share view showing how each income quintile
+          contributes to the total observed burden for smoking, depression, and
+          heavy drinking across European countries.
+        </p>
+      </div>
+      <img
+        alt="Relative Share of Health Burden by Income Quintile Across European Countries"
+        loading="eager"
+        src={`${NOTEBOOK_DIAGRAM_BASE}notebook-figure-05.png`}
+      />
+    </figure>
   )
 }
 
@@ -78,16 +118,16 @@ export function StorySection() {
           kicker="02 Main Finding"
           title="Income quintile changes the shape of each health outcome."
         />
-        <HealthQuintileLineChart />
+        <NotebookRelativeShareDiagram />
       </section>
 
       <section className="narrative-section" id="geographic-pattern">
         <SectionHeader
-          copy="The country heatmap keeps the same income-quintile view and lets the geography change beneath it. Use the tabs to compare whether the same countries stand out for smoking, drinking, and depressive symptoms."
+          copy="The notebook map keeps the same geographic question and overlays three health layers on OpenStreetMap. Switch the layer control to compare whether the same countries stand out for smoking, drinking, and depressive symptoms."
           kicker="03 Geographic Pattern"
           title="Countries do not share one inequality profile."
         />
-        <GeographicHeatmap />
+        <NotebookLayerMap />
       </section>
 
       <section className="narrative-section" id="time-evolution">

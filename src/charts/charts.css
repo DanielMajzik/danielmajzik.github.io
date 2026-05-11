@@ -55,6 +55,17 @@
   border-radius: 3px;
 }
 
+.chart-line-swatch {
+  display: inline-block;
+  width: 22px;
+  height: 0;
+  border-top: 3px solid var(--ecl-color-dark-100);
+}
+
+.chart-line-swatch-dashed {
+  border-top-style: dashed;
+}
+
 .story-chart-scroll {
   overflow-x: auto;
   padding-bottom: 4px;
