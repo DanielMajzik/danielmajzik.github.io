@@ -1,7 +1,6 @@
 import { GapEvolutionChart } from '../charts/GapEvolutionChart'
 import {
   formatPercentNumber,
-  formatSignedPointDelta,
   getGapRows,
 } from '../charts/healthStoryData'
 
