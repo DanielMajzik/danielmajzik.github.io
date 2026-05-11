@@ -16,7 +16,7 @@ import { ControlSection } from './sections/ControlSection'
 import { DetailsSection } from './sections/DetailsSection'
 import { HeaderSection } from './sections/HeaderSection'
 import { MapSection } from './sections/MapSection'
-import { StorySection } from './sections/StorySection'
+import { ReflectionSection, StorySection } from './sections/StorySection'
 import { TooltipOverlay } from './sections/TooltipOverlay'
 
 function App() {
@@ -56,41 +56,54 @@ function App() {
     <main className="dashboard-shell">
       <HeaderSection />
 
-      <ControlSection
-        onMetricChange={setSelectedMetric}
-        onYearChange={setSelectedYear}
-        selectedMetric={selectedMetric}
-        selectedYear={selectedYear}
-      />
+      <StorySection />
 
-      <section className="workspace">
-        <MapSection
-          activeCountryCode={activeCountryCode}
-          activeMetric={activeMetric}
-          averageValue={averageValue}
-          extent={extent}
-          onHoverCountry={setHoveredCountry}
-          onPinCountry={setPinnedCountry}
-          onTooltipChange={setTooltip}
-          selectedGroup={selectedGroup}
+      <section className="narrative-section exploration-section" id="exploration">
+        <div className="narrative-heading">
+          <p className="section-kicker">06 Interactive Exploration</p>
+          <h2>Use the map to test the pattern country by country.</h2>
+          <p>
+            Change the metric, year, age, sex, and income quintile to see where
+            the aggregate story holds and where local patterns look different.
+          </p>
+        </div>
+
+        <ControlSection
+          onMetricChange={setSelectedMetric}
+          onYearChange={setSelectedYear}
           selectedMetric={selectedMetric}
           selectedYear={selectedYear}
         />
 
-        <DetailsSection
-          activeCountry={activeCountry}
-          activeCountryCode={activeCountryCode}
-          activeMetric={activeMetric}
-          onAgeChange={setSelectedAge}
-          onIncomeQuintileChange={setSelectedIncomeQuintile}
-          onSexChange={setSelectedSex}
-          selectedGroup={selectedGroup}
-          selectedMetric={selectedMetric}
-          selectedYear={selectedYear}
-        />
+        <section className="workspace">
+          <MapSection
+            activeCountryCode={activeCountryCode}
+            activeMetric={activeMetric}
+            averageValue={averageValue}
+            extent={extent}
+            onHoverCountry={setHoveredCountry}
+            onPinCountry={setPinnedCountry}
+            onTooltipChange={setTooltip}
+            selectedGroup={selectedGroup}
+            selectedMetric={selectedMetric}
+            selectedYear={selectedYear}
+          />
+
+          <DetailsSection
+            activeCountry={activeCountry}
+            activeCountryCode={activeCountryCode}
+            activeMetric={activeMetric}
+            onAgeChange={setSelectedAge}
+            onIncomeQuintileChange={setSelectedIncomeQuintile}
+            onSexChange={setSelectedSex}
+            selectedGroup={selectedGroup}
+            selectedMetric={selectedMetric}
+            selectedYear={selectedYear}
+          />
+        </section>
       </section>
 
-      <StorySection />
+      <ReflectionSection />
 
       <TooltipOverlay
         activeMetric={activeMetric}

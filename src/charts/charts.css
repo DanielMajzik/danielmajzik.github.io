@@ -2,8 +2,10 @@
   display: grid;
   gap: 14px;
   margin: 10px 0 6px;
-  padding: 18px 0 4px;
-  border-top: 1px solid var(--ecl-color-neutral-80);
+  padding: 18px;
+  border: 1px solid var(--ecl-color-neutral-80);
+  border-radius: 8px;
+  background: var(--ecl-color-white);
 }
 
 .story-chart-header {
@@ -66,6 +68,10 @@
   font-family: inherit;
 }
 
+.story-chart svg.quintile-line-chart {
+  min-width: 0;
+}
+
 .chart-grid {
   stroke: var(--ecl-color-neutral-80);
   stroke-width: 1;
@@ -118,6 +124,16 @@
   font-size: 9.5px;
 }
 
+.chart-outcome-label {
+  font-size: 11px;
+}
+
+.chart-gap-delta {
+  fill: var(--ecl-color-dark-80);
+  font-size: 9px;
+  font-weight: 850;
+}
+
 .chart-segment-label {
   font-size: 9px;
   font-weight: 900;
@@ -149,5 +165,9 @@
 
   .story-chart svg {
     min-width: 720px;
+  }
+
+  .story-chart svg.quintile-line-chart {
+    min-width: 0;
   }
 }
