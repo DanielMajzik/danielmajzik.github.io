@@ -99,6 +99,15 @@ export function StorySection() {
           kicker="01 Hook"
           title="Health inequality is visible before you pick a country."
         />
+        <p>
+          It can be wondered whether economic inequality affects more than just financial opportunities. Is there potentially a link between average income and overall well-being? 
+          It can be asked whether it can also influence people’s mental and physical well-being. 
+          Perhaps, it is a leading factor in shaping habits such as smoking and alcohol consumption. 
+          Across Europe, lower-income groups often report worse mental health outcomes and higher rates of unhealthy coping behaviors. 
+
+          This project explores the relationship between income inequality, depression, smoking, and drinking across European countries. 
+          By combining multiple datasets and visualizations, we aim to understand whether lower income is associated with negative health outcomes and how these patterns vary geographically and over time. 
+        </p>
 
         <div className="hook-stat-grid" aria-label="Key findings">
           <div>
