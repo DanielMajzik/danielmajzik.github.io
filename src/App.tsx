@@ -13,7 +13,6 @@ import {
   getMetricExtent,
 } from './appData'
 import { CountryExceptionSection } from './sections/CountryExceptionSection'
-import { DatasetSection } from './sections/DatasetSection'
 import { ExplorationSection } from './sections/ExplorationSection'
 import { GeographicPatternSection } from './sections/GeographicPatternSection'
 import { HeaderSection } from './sections/HeaderSection'
@@ -32,7 +31,6 @@ const progressSections = [
   { id: 'country-exception', label: 'Outlier' },
   { id: 'exploration', label: 'Explore' },
   { id: 'reflection', label: 'Conclusion' },
-  { id: 'dataset', label: 'Data' },
 ]
 
 function App() {
