@@ -495,7 +495,7 @@ h1 {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(620px, 1fr) minmax(640px, 0.58fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   align-items: stretch;
 }
@@ -1759,7 +1759,6 @@ h1 {
 
   .single-page-shell .exploration-section > .workspace {
     grid-row: auto;
-    grid-template-columns: minmax(0, 1fr) minmax(560px, 0.72fr);
   }
 
   .single-page-shell .exploration-section,
