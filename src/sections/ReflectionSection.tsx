@@ -1,5 +1,3 @@
-import { getGapRows } from '../charts/healthStoryData'
-import { formatGapValue } from './storyFormat'
 import { SectionHeader } from './storySectionParts'
 
 export function ReflectionSection() {
