@@ -33,6 +33,69 @@ const progressSections = [
   { id: 'reflection', label: 'Conclusion' },
 ]
 
+const clamp = (value: number, min = 0, max = 1) =>
+  Math.min(Math.max(value, min), max)
+
+function getProgressForScrollPosition(scrollY: number) {
+  const sectionPositions = progressSections
+    .map((section, index) => {
+      const element = document.getElementById(section.id)
+
+      return element
+        ? {
+            id: section.id,
+            progress:
+              progressSections.length > 1
+                ? index / (progressSections.length - 1)
+                : 0,
+            top: element.offsetTop,
+          }
+        : null
+    })
+    .filter((section): section is NonNullable<typeof section> => section !== null)
+
+  if (sectionPositions.length === 0) {
+    return 0
+  }
+
+  if (scrollY <= sectionPositions[0].top) {
+    return 0
+  }
+
+  const activeSection =
+    sectionPositions.findLast((section) => section.top <= scrollY) ??
+    sectionPositions[0]
+  const nextSection = sectionPositions.find(
+    (section) => section.top > scrollY,
+  )
+
+  if (!nextSection) {
+    return 1
+  }
+
+  if (nextSection.top === activeSection.top) {
+    return activeSection.progress
+  }
+
+  const sectionProgress =
+    (scrollY - activeSection.top) / (nextSection.top - activeSection.top)
+  const scrollProgress =
+    activeSection.progress +
+    clamp(sectionProgress) * (nextSection.progress - activeSection.progress)
+
+  return clamp(scrollProgress)
+}
+
+function getActiveSectionId(viewportAnchor: number) {
+  const currentSection = progressSections.findLast((section) => {
+    const element = document.getElementById(section.id)
+
+    return element ? element.offsetTop <= viewportAnchor : false
+  })
+
+  return currentSection?.id ?? progressSections[0].id
+}
+
 function App() {
   const [selectedYear, setSelectedYear] = useState<Year>('2019')
   const [selectedMetric, setSelectedMetric] = useState<MetricId>('medianIncome')
@@ -70,19 +133,10 @@ function App() {
 
   useEffect(() => {
     function handleScroll() {
-      const scrollableHeight =
-        document.documentElement.scrollHeight - window.innerHeight
-      const nextProgress =
-        scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0
       const viewportAnchor = window.scrollY + window.innerHeight * 0.38
-      const currentSection = progressSections.findLast((section) => {
-        const element = document.getElementById(section.id)
 
-        return element ? element.offsetTop <= viewportAnchor : false
-      })
-
-      setScrollProgress(Math.min(Math.max(nextProgress, 0), 1))
-      setActiveSectionId(currentSection?.id ?? progressSections[0].id)
+      setScrollProgress(getProgressForScrollPosition(window.scrollY))
+      setActiveSectionId(getActiveSectionId(viewportAnchor))
     }
 
     handleScroll()
