@@ -9,7 +9,7 @@ export function TimeEvolutionSection() {
     <section className="narrative-section" id="time-evolution">
       <SectionHeader
         kicker="Over Time"
-        title="Gaps move in different directions"
+        title="Did Europe Become Healthier Over Time?"
       />
       <StoryCopy>
         <p>
