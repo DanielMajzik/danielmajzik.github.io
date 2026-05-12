@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import {
   COUNTRIES,
@@ -12,30 +12,30 @@ import {
   getMetric,
   getMetricExtent,
 } from './appData'
-import { ControlSection } from './sections/ControlSection'
-import { DetailsSection } from './sections/DetailsSection'
+import { CountryExceptionSection } from './sections/CountryExceptionSection'
+import { DatasetSection } from './sections/DatasetSection'
+import { ExplorationSection } from './sections/ExplorationSection'
+import { GeographicPatternSection } from './sections/GeographicPatternSection'
 import { HeaderSection } from './sections/HeaderSection'
-import { MapSection } from './sections/MapSection'
-import {
-  CountryExceptionSection,
-  DatasetSection,
-  GeographicPatternSection,
-  HookSection,
-  MainFindingSection,
-  ReflectionSection,
-  TimeEvolutionSection,
-} from './sections/StorySection'
+import { HookSection } from './sections/HookSection'
+import { MainFindingSection } from './sections/MainFindingSection'
+import { NotebookCtaSection } from './sections/NotebookCtaSection'
+import { ReflectionSection } from './sections/ReflectionSection'
+import { TimeEvolutionSection } from './sections/TimeEvolutionSection'
 import { TooltipOverlay } from './sections/TooltipOverlay'
 
-type Slide = {
-  id: string
-  label: string
-  teaser: string
-  content: ReactNode
-}
+const progressSections = [
+  { id: 'hook', label: 'Hook' },
+  { id: 'main-finding', label: 'Finding' },
+  { id: 'geographic-pattern', label: 'Map' },
+  { id: 'time-evolution', label: 'Change' },
+  { id: 'country-exception', label: 'Exception' },
+  { id: 'exploration', label: 'Explore' },
+  { id: 'reflection', label: 'Reflect' },
+  { id: 'dataset', label: 'Dataset' },
+]
 
 function App() {
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [selectedYear, setSelectedYear] = useState<Year>('2019')
   const [selectedMetric, setSelectedMetric] = useState<MetricId>('medianIncome')
   const [selectedAge, setSelectedAge] = useState(DEFAULT_GROUP.age)
@@ -50,7 +50,8 @@ function App() {
     x: 0,
     y: 0,
   })
-  const slideViewportRef = useRef<HTMLDivElement | null>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [activeSectionId, setActiveSectionId] = useState(progressSections[0].id)
 
   const selectedGroup: GroupSelection = {
     age: selectedAge,
@@ -69,210 +70,91 @@ function App() {
       ? metricValues.reduce((sum, value) => sum + value, 0) / metricValues.length
       : null
 
-  const slides: Slide[] = [
-    {
-      id: 'heading',
-      label: 'Heading',
-      teaser: 'Start with the project title and data scope.',
-      content: (
-        <section className="title-slide" aria-label="Presentation title">
-          <HeaderSection />
-        </section>
-      ),
-    },
-    {
-      id: 'hook',
-      label: 'Hook',
-      teaser: 'See the headline health gaps before choosing a country.',
-      content: <HookSection />,
-    },
-    {
-      id: 'main-finding',
-      label: 'Finding',
-      teaser: 'Compare how income quintiles reshape each outcome.',
-      content: <MainFindingSection />,
-    },
-    {
-      id: 'geographic-pattern',
-      label: 'Map',
-      teaser: 'Move from income groups to the geography of the pattern.',
-      content: <GeographicPatternSection />,
-    },
-    {
-      id: 'time-evolution',
-      label: 'Change',
-      teaser: 'Check whether the gaps changed between 2014 and 2019.',
-      content: <TimeEvolutionSection />,
-    },
-    {
-      id: 'country-exception',
-      label: 'Exception',
-      teaser: 'Look at Turkey as a country-level exception.',
-      content: <CountryExceptionSection />,
-    },
-    {
-      id: 'exploration',
-      label: 'Explore',
-      teaser: 'Use the interactive map to test the story yourself.',
-      content: (
-        <section className="narrative-section exploration-section" id="exploration">
-          <div className="narrative-heading">
-            <p className="section-kicker">06 Interactive Exploration</p>
-            <h2>Use the map to test the pattern country by country.</h2>
-            <p>
-              Change the metric, year, age, sex, and income quintile to see
-              where the aggregate story holds and where local patterns look
-              different.
-            </p>
-          </div>
-
-          <ControlSection
-            onMetricChange={setSelectedMetric}
-            onYearChange={setSelectedYear}
-            selectedMetric={selectedMetric}
-            selectedYear={selectedYear}
-          />
-
-          <section className="workspace">
-            <MapSection
-              activeCountryCode={activeCountryCode}
-              activeMetric={activeMetric}
-              averageValue={averageValue}
-              extent={extent}
-              onHoverCountry={setHoveredCountry}
-              onPinCountry={setPinnedCountry}
-              onTooltipChange={setTooltip}
-              selectedGroup={selectedGroup}
-              selectedMetric={selectedMetric}
-              selectedYear={selectedYear}
-            />
-
-            <DetailsSection
-              activeCountry={activeCountry}
-              activeCountryCode={activeCountryCode}
-              activeMetric={activeMetric}
-              onAgeChange={setSelectedAge}
-              onIncomeQuintileChange={setSelectedIncomeQuintile}
-              onSexChange={setSelectedSex}
-              selectedGroup={selectedGroup}
-              selectedMetric={selectedMetric}
-              selectedYear={selectedYear}
-            />
-          </section>
-        </section>
-      ),
-    },
-    {
-      id: 'reflection',
-      label: 'Reflect',
-      teaser: 'Close with what the charts support and what remains uncertain.',
-      content: <ReflectionSection />,
-    },
-    {
-      id: 'dataset',
-      label: 'Dataset',
-      teaser: 'Describe the source data, measures, and aggregation choices.',
-      content: <DatasetSection />,
-    },
-  ]
-  const slideCount = slides.length
-  const currentSlideData = slides[currentSlide] ?? slides[0]
-  const previousSlideData = currentSlide > 0 ? slides[currentSlide - 1] : null
-  const nextSlideData = currentSlide < slideCount - 1 ? slides[currentSlide + 1] : null
-  const isFirstSlide = currentSlide === 0
-  const isLastSlide = currentSlide === slideCount - 1
-
-  const goToSlide = useCallback((nextSlide: number) => {
-    setCurrentSlide(Math.min(Math.max(nextSlide, 0), slideCount - 1))
-  }, [slideCount])
-
   useEffect(() => {
-    slideViewportRef.current?.scrollTo({ left: 0, top: 0 })
-  }, [currentSlide])
+    function handleScroll() {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight
+      const nextProgress =
+        scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0
+      const viewportAnchor = window.scrollY + window.innerHeight * 0.38
+      const currentSection = progressSections.findLast((section) => {
+        const element = document.getElementById(section.id)
 
-  useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
-        return
-      }
+        return element ? element.offsetTop <= viewportAnchor : false
+      })
 
-      if (
-        event.target instanceof HTMLElement &&
-        event.target.closest('input, select, textarea, [contenteditable="true"]')
-      ) {
-        return
-      }
-
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault()
-        goToSlide(currentSlide - 1)
-      }
-
-      if (event.key === 'ArrowRight') {
-        event.preventDefault()
-        goToSlide(currentSlide + 1)
-      }
+      setScrollProgress(Math.min(Math.max(nextProgress, 0), 1))
+      setActiveSectionId(currentSection?.id ?? progressSections[0].id)
     }
 
-    window.addEventListener('keydown', handleKeyDown)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
     }
-  }, [currentSlide, goToSlide])
+  }, [])
 
   return (
-    <main className="dashboard-shell slideshow-shell">
-      <div
-        aria-live="polite"
-        className="slide-viewport"
-        ref={slideViewportRef}
-      >
-        <div className="slide-stage" key={currentSlideData.id}>
-          {currentSlideData.content}
+    <>
+      <nav className="page-progress" aria-label="Page progress">
+        <div className="progress-track" aria-hidden="true">
+          <span
+            className="progress-fill"
+            style={{ transform: `scaleY(${scrollProgress})` }}
+          />
         </div>
-      </div>
 
-      <nav className="slide-cue-nav" aria-label="Slide navigation">
-        <button
-          className="slide-cue previous"
-          disabled={isFirstSlide}
-          onClick={() => goToSlide(currentSlide - 1)}
-          type="button"
-        >
-          <span className="cue-direction">Back</span>
-          <span className="cue-title">
-            {previousSlideData ? previousSlideData.label : 'Start'}
-          </span>
-          <span className="cue-text">
-            {previousSlideData
-              ? previousSlideData.teaser
-              : 'You are at the opening title.'}
-          </span>
-        </button>
-
-        <span className="slide-count" aria-label="Current slide">
-          {String(currentSlide + 1).padStart(2, '0')} /{' '}
-          {String(slideCount).padStart(2, '0')}
-        </span>
-
-        <button
-          className="slide-cue next"
-          disabled={isLastSlide}
-          onClick={() => goToSlide(currentSlide + 1)}
-          type="button"
-        >
-          <span className="cue-direction">Forward</span>
-          <span className="cue-title">
-            {nextSlideData ? nextSlideData.label : 'End'}
-          </span>
-          <span className="cue-text">
-            {nextSlideData ? nextSlideData.teaser : 'This is the final slide.'}
-          </span>
-        </button>
+        <ol className="progress-links">
+          {progressSections.map((section) => (
+            <li key={section.id}>
+              <a
+                aria-current={
+                  section.id === activeSectionId ? 'location' : undefined
+                }
+                className={section.id === activeSectionId ? 'active' : undefined}
+                href={`#${section.id}`}
+              >
+                <strong>{section.label}</strong>
+              </a>
+            </li>
+          ))}
+        </ol>
       </nav>
 
-      {currentSlideData.id === 'exploration' ? (
+      <main className="dashboard-shell single-page-shell">
+        <HeaderSection />
+        <HookSection />
+        <MainFindingSection />
+        <GeographicPatternSection />
+        <TimeEvolutionSection />
+        <CountryExceptionSection />
+
+        <ExplorationSection
+          activeCountry={activeCountry}
+          activeCountryCode={activeCountryCode}
+          activeMetric={activeMetric}
+          averageValue={averageValue}
+          extent={extent}
+          onAgeChange={setSelectedAge}
+          onHoverCountry={setHoveredCountry}
+          onIncomeQuintileChange={setSelectedIncomeQuintile}
+          onMetricChange={setSelectedMetric}
+          onPinCountry={setPinnedCountry}
+          onSexChange={setSelectedSex}
+          onTooltipChange={setTooltip}
+          onYearChange={setSelectedYear}
+          selectedGroup={selectedGroup}
+          selectedMetric={selectedMetric}
+          selectedYear={selectedYear}
+        />
+
+        <ReflectionSection />
+        <DatasetSection />
+        <NotebookCtaSection />
+
         <TooltipOverlay
           activeMetric={activeMetric}
           selectedGroup={selectedGroup}
@@ -280,8 +162,8 @@ function App() {
           selectedYear={selectedYear}
           tooltip={tooltip}
         />
-      ) : null}
-    </main>
+      </main>
+    </>
   )
 }
 
