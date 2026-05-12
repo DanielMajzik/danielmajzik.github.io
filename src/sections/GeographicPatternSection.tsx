@@ -9,29 +9,48 @@ export function GeographicPatternSection() {
       />
       <StoryCopy>
         <p>
-          While income inequality exists across Europe, its impact on social
-          well-being varies greatly by country. The heatmap reveals regional
-          patterns in smoking, alcohol consumption, and depressive symptom rates.
+          Looking across Europe, health inequality does not appear randomly distributed.
+          Clear geographic patterns emerge when comparing smoking, depressive symptoms,
+          and heavy drinking across countries and income groups. Regional clusters become
+          visible across the continent, revealing how socioeconomic conditions, public
+          health policies, and cultural norms shape different health outcomes in different
+          ways.
         </p>
+
         <p>
-          Northern and Eastern European countries show different behavioral
-          trends compared to Southern Europe, suggesting that cultural norms,
-          healthcare systems, and social policies may influence how people
-          respond to economic stress.
+          Smoking shows one of the clearest geographic and socioeconomic gradients.
+          Higher smoking prevalence is concentrated particularly in parts of Eastern and
+          Southeastern Europe, where lower-income populations often carry a substantially
+          larger share of the burden. In contrast, many Northern and Western European
+          countries display lower overall smoking rates and smaller differences between
+          income groups, suggesting that economic prosperity and stronger welfare systems
+          may contribute to healthier lifestyle patterns.
         </p>
+
         <p>
-          Darker colors show higher rates, while lighter colors show lower rates.
-          By switching between smoking, drinking, and depressive symptom layers,
-          you can explore how these issues overlap geographically and identify
-          countries where certain behaviors are especially pronounced.
+          Heavy episodic drinking follows a noticeably different pattern. Unlike smoking,
+          alcohol consumption appears relatively stable across both countries and income
+          quintiles. While some regional differences remain visible, the overall
+          distribution is far more even across Europe. This indicates that drinking
+          behavior may be influenced less by economic inequality and more by broader
+          cultural and social practices shared across socioeconomic groups.
         </p>
+
         <p>
-          Read this map as the transition from the aggregate income pattern to
-          country context. The burden-share plot shows who is most affected
-          within the income distribution; the map shows where those burdens are
-          concentrated. That geographic view is what makes the later interactive
-          map useful: it lets you test whether a pattern is European-wide,
-          regional, or specific to a small set of countries.
+          Depressive symptoms reveal a more complex and less uniform picture. Some
+          wealthier countries report unexpectedly high rates of depressive symptoms,
+          while certain lower-income countries show comparatively lower levels than
+          anticipated. These differences suggest that mental health is shaped not only
+          by economic conditions, but also by factors such as social support systems,
+          reporting culture, healthcare accessibility, and national attitudes toward
+          mental well-being.
+        </p>
+
+        <p>
+          Together, these patterns demonstrate that health inequality in Europe cannot
+          be explained by income alone. While socioeconomic status strongly influences
+          smoking and mental health outcomes, national context and cultural factors can
+          significantly alter how these inequalities manifest across the continent.
         </p>
       </StoryCopy>
       <NotebookLayerMap />

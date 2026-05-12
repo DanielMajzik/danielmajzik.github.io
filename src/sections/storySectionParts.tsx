@@ -45,7 +45,7 @@ export function NotebookLayerMap() {
         drinking, and depressive symptoms across European regions. Each 
         layer corresponds to one of the three health outcomes, allowing 
         users to explore how these behaviors and conditions are distributed 
-        geographically.
+        geographically. Darker colors show higher rates, while lighter colors show lower rates.
       </figcaption>
     </figure>
   )

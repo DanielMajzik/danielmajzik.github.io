@@ -15,45 +15,37 @@ export function ReflectionSection() {
         kicker="Conclusion"
         title="Income is a clue, not the cause"
       />
-
-      <div className="reflection-grid">
-        <div>
-          <h3>Strongest pattern</h3>
-          <p>
-            Depressive symptoms show the clearest inequality signal: in 2019,
-            the first income quintile was {formatGapValue(depressionGap?.end)}
-            above the fifth quintile in the country-average view.
-          </p>
-        </div>
-        <div>
-          <h3>Health behavior split</h3>
-          <p>
-            Daily smoking also remains higher in lower-income groups, with a
-            2019 gap of {formatGapValue(smokingGap?.end)}. Heavy episodic
-            drinking reverses the direction, sitting{' '}
-            {formatGapValue(drinkingGap?.end)} higher in the fifth income
-            quintile.
-          </p>
-        </div>
-        <div>
-          <h3>Why place matters</h3>
-          <p>
-            The country maps and the Norway-Turkey comparison show that national
-            context can weaken, amplify, or reverse the broad income gradient.
-            Culture, age structure, health policy, and reporting behavior may
-            shape the observed rates.
-          </p>
-        </div>
-        <div>
-          <h3>What remains uncertain</h3>
-          <p>
-            These views are descriptive rather than causal. The data identifies
+      <p>
+        Across Europe, income inequality leaves a visible imprint on health. 
+        The analysis consistently shows that lower-income groups experience 
+        higher rates of smoking and depressive symptoms, while wealthier 
+        populations generally report lower burdens of these outcomes.
+      </p>
+      <p>
+        At the same time, the project also reveals that not every health 
+        behavior follows the same socioeconomic logic. Heavy episodic drinking 
+        remains surprisingly stable across income levels, suggesting that some 
+        behaviors are shaped more strongly by cultural and national context than 
+        by economic position alone.
+      </p>
+      <p>
+        The comparison between countries further demonstrates that health inequality 
+        is not universal in its expression. While many nations follow similar gradients, 
+        exceptions such as Türkiye illustrate how social norms, policy environments, 
+        and cultural factors can alter expected relationships between wealth and health.
+      </p>
+      <p>
+        Rather than presenting inequality as a purely economic issue, the findings 
+        highlight how deeply socioeconomic conditions are connected to everyday 
+        well-being, mental health, and lifestyle behaviors.
+      </p>
+      <h2>Limitations</h2>
+      <p>
+        These views are descriptive rather than causal. The data identifies
             associations by country and income group, but it does not isolate the
             mechanisms behind each pattern or prove that income alone causes the
             health differences.
-          </p>
-        </div>
-      </div>
+      </p>
     </section>
   )
 }
