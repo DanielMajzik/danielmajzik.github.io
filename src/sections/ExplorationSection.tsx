@@ -55,10 +55,16 @@ export function ExplorationSection({
         <p className="section-kicker">Explore</p>
         <h2>Test the pattern yourself</h2>
         <p>
-          The story map above shows the broad geography; this interactive map
-          lets you interrogate it. Change the metric, year, age, sex, and income
+          After seeing broad patterns for selected countries like Norway and Turkey, 
+          you may be wondering how it plays out in
+          different places. The story map above shows the
+          broad geography; the interactive map in this section lets you interrogate it. 
+          Change the metric, year, age, sex, and income
           quintile to see where the aggregate story holds and where local
           patterns look different.
+
+          You can simply select a specific country to see its statistcs by clicking on 
+          the map or hovering over it to get a quick preview.
         </p>
       </div>
 
