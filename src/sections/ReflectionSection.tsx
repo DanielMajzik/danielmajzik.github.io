@@ -3,10 +3,6 @@ import { formatGapValue } from './storyFormat'
 import { SectionHeader } from './storySectionParts'
 
 export function ReflectionSection() {
-  const gaps = getGapRows()
-  const smokingGap = gaps.find((gap) => gap.id === 'smoking')
-  const drinkingGap = gaps.find((gap) => gap.id === 'drinking')
-  const depressionGap = gaps.find((gap) => gap.id === 'depression')
 
   return (
     <section className="narrative-section reflection-section" id="reflection">
