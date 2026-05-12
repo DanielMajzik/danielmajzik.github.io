@@ -13,31 +13,26 @@ export function ReflectionSection() {
         Across Europe, income inequality leaves a visible imprint on health. 
         The analysis consistently shows that lower-income groups experience 
         higher rates of smoking and depressive symptoms, while wealthier 
-        populations generally report lower burdens of these outcomes.
+        populations generally report lower rates.
       </p>
       <p>
         At the same time, the project also reveals that not every health 
-        behavior follows the same socioeconomic logic. Heavy episodic drinking 
+        behavior follows the same socioeconomic logic. As mentioned earlier, heavy episodic drinking 
         remains surprisingly stable across income levels, suggesting that some 
         behaviors are shaped more strongly by cultural and national context than 
         by economic position alone.
       </p>
       <p>
-        The comparison between countries further demonstrates that health inequality 
-        is not universal in its expression. While many nations follow similar gradients, 
-        exceptions such as Türkiye illustrate how social norms, policy environments, 
-        and cultural factors can alter expected relationships between wealth and health.
       </p>
       <p>
         Rather than presenting inequality as a purely economic issue, the findings 
-        highlight how deeply socioeconomic conditions are connected to everyday 
-        well-being, mental health, and lifestyle behaviors.
+        highlight that socioeconomic conditions are connected to everyday 
+        well-being, mental health, and lifestyle behaviors. It is also connected to things on the national scale, such as national policies and the country's overall structural ability to provide adequate health care. 
       </p>
       <h2>Limitations</h2>
       <p>
-        These views are descriptive rather than causal. The data identifies
-            associations by country and income group, but it does not isolate the
-            mechanisms behind each pattern or prove that income alone causes the
+        These findings are not final, as it is mainly based on data that has been collected by country and income group, but it does not include information based on the
+            mechanisms behind each pattern, and therefore, it cannot prove that income alone causes the
             health differences.
       </p>
     </section>
