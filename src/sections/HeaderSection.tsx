@@ -8,6 +8,9 @@ export function HeaderSection() {
         <p className="subtitle">
           A data story about how income shapes smoking and mental health in Europe, and where national context breaks the
           pattern.
+          <p>
+            The analysis is based on four different datasets about Quality of Life from Eurostat, the Statistical Office of the European Union.
+          </p>
         </p>
       </div>
     </header>

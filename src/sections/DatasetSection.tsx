@@ -5,7 +5,7 @@ export function DatasetSection() {
   return (
     <section className="narrative-section reflection-section dataset-section" id="dataset">
       <SectionHeader
-        copy="The analysis combines Eurostat income data with European Health Interview Survey health indicators, then compares countries, income quintiles, and changes between two survey years."
+        copy="The analysis is based on four different datasets about Quality of Life from Eurostat, the Statistical Office of the European Union."
         kicker="Data"
         title="What powers the analysis?"
       />
