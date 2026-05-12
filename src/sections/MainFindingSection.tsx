@@ -13,21 +13,28 @@ export function MainFindingSection() {
       />
       <StoryCopy>
         <p>
-          The first visualization compares health outcomes across income
-          quintiles. It shows a clear social gradient: lower-income groups report
-          higher levels of depressive symptoms and poorer overall well-being than
-          higher-income groups.
+          The data reveals a clear and persistent pattern: lower-income groups 
+          carry a disproportionately larger share of the health burden related 
+          to smoking and depression. As income increases, both smoking prevalence 
+          and depressive symptoms steadily decline. The poorest income quintile 
+          consistently shows the highest rates, while the wealthiest groups report 
+          the lowest.
         </p>
         <p>
-          The multi-line chart shows that health inequality is not evenly
-          distributed. As income increases, negative health outcomes generally
-          decrease, suggesting a strong correlation between economic status and
-          mental health.
+          The relationship is especially strong for depression. Individuals in 
+          the lowest income quintile account for more than 30% of the total burden, 
+          while the highest income group represents only around 11%. Smoking 
+          follows a similar, though less extreme, gradient. These findings suggest 
+          that economic inequality is closely connected to both mental health and 
+          unhealthy coping behaviors.
         </p>
         <p>
-          These patterns suggest that financial insecurity may contribute to
-          stress and some unhealthy coping mechanisms, although alcohol does not
-          follow the same income gradient.
+          Heavy episodic drinking, however, tells a very different story. Unlike 
+          smoking and depression, alcohol consumption remains remarkably stable 
+          across all income groups. The relative share changes only minimally from 
+          the poorest to the wealthiest quintile, indicating that drinking behavior 
+          may be influenced less by income and more by cultural or social factors 
+          shared across economic classes.
         </p>
       </StoryCopy>
       <NotebookRelativeShareDiagram />
