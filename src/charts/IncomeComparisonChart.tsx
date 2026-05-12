@@ -61,7 +61,8 @@ export function IncomeComparisonChart() {
           </span>
         </>
       }
-      subtitle={`${LATEST_YEAR} net income in purchasing power standards for ${DEFAULT_INCOME_GROUP_LABEL}. Countries are sorted by median income.`}
+      caption="Mean and median income are close in many countries, but the ranking still shows a clear material baseline for the rest of the story: health outcomes are being compared across countries with very different purchasing-power-adjusted incomes."
+      subtitle={`${LATEST_YEAR} net income in purchasing power standards for ${DEFAULT_INCOME_GROUP_LABEL}. Countries are sorted by median net income.`}
       title="Mean and Median Income"
     >
       <svg

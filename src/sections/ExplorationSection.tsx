@@ -55,8 +55,10 @@ export function ExplorationSection({
         <p className="section-kicker">Explore</p>
         <h2>Test the pattern yourself</h2>
         <p>
-          Change the metric, year, age, sex, and income quintile to see where
-          the aggregate story holds and where local patterns look different.
+          The story map above shows the broad geography; this interactive map
+          lets you interrogate it. Change the metric, year, age, sex, and income
+          quintile to see where the aggregate story holds and where local
+          patterns look different.
         </p>
       </div>
 

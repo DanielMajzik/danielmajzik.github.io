@@ -101,6 +101,7 @@ export function HealthQuintileLineChart() {
           </span>
         </>
       }
+      caption="The key pattern is the direction of each line. Smoking and depressive symptoms are higher at the lower-income end, while heavy drinking bends the other way, so the chart separates the general inequality signal from the behavior-specific exception."
       subtitle={`${START_YEAR} and ${LATEST_YEAR} EU-27 country averages by income quintile. Smoking combines under-20 and 20-plus daily cigarette smokers.`}
       title="Income Quintile vs. Health Outcome"
     >

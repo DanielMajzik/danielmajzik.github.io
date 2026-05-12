@@ -13,11 +13,10 @@ export function MainFindingSection() {
       />
       <StoryCopy>
         <p>
-          Our first visualization compares income quintiles with mental health
-          outcomes across Europe. Looking at the data, a clear social difference
-          is shown; individuals in lower income groups consistently report higher
-          levels of depression and poorer overall well-being compared to higher
-          income groups.
+          The first visualization compares health outcomes across income
+          quintiles. It shows a clear social gradient: lower-income groups report
+          higher levels of depressive symptoms and poorer overall well-being than
+          higher-income groups.
         </p>
         <p>
           The multi-line chart shows that health inequality is not evenly
@@ -26,9 +25,9 @@ export function MainFindingSection() {
           mental health.
         </p>
         <p>
-          This data supports the idea that financial insecurity may contribute to
-          stress and thus, unhealthy coping mechanisms such as heavy alcohol
-          consumption and smoking.
+          These patterns suggest that financial insecurity may contribute to
+          stress and some unhealthy coping mechanisms, although alcohol does not
+          follow the same income gradient.
         </p>
       </StoryCopy>
       <NotebookRelativeShareDiagram />

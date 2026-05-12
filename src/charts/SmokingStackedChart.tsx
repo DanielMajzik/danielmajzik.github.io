@@ -54,18 +54,19 @@ export function SmokingStackedChart() {
               className="chart-swatch"
               style={{ background: COLORS.orange }}
             />
-            Under 20 cigarettes
+            Under 20 cigarettes per day
           </span>
           <span>
             <i
               className="chart-swatch"
               style={{ background: COLORS.branding }}
             />
-            20+ cigarettes
+            20+ cigarettes per day
           </span>
         </>
       }
-      subtitle={`${LATEST_YEAR} daily smokers for ${DEFAULT_GROUP_LABEL}, stacked by reported cigarettes per day.`}
+      caption="The bars show both the overall smoking burden and the split between lighter and heavier daily smoking. Countries near the top are the places where smoking has the most room to reinforce an income-related health burden."
+      subtitle={`${LATEST_YEAR} daily smokers for ${DEFAULT_GROUP_LABEL}, stacked by reported cigarette consumption.`}
       title="Daily Smokers by Country"
     >
       <svg

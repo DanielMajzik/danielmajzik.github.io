@@ -61,8 +61,9 @@ export function GapEvolutionChart() {
           {row.shortLabel}
         </span>
       ))}
+      caption="A wider gap means the distance between income groups grew between the two survey years. The comparison shows that inequality can move differently by outcome, even when the same countries and income quintiles are being compared."
       subtitle="Gap size compares the higher-prevalence end of the income distribution with the lower-prevalence end, in percentage points."
-      title="Did Health Gaps Increase?"
+      title="Did Health Gaps Widen?"
     >
       <svg
         aria-label={`Health outcome gap comparison, ${START_YEAR} and ${LATEST_YEAR}`}

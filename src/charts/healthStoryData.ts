@@ -47,7 +47,7 @@ export const OUTCOMES: OutcomeDefinition[] = [
   {
     id: 'depression',
     label: 'Current depressive symptoms',
-    shortLabel: 'Depression',
+    shortLabel: 'Depressive symptoms',
     color: '#5577f0',
     gapDirection: 'low-minus-high',
   },

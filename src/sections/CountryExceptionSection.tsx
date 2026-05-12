@@ -13,25 +13,25 @@ export function CountryExceptionSection() {
       />
       <StoryCopy>
         <p>
-          Furthermore, we compared the highest median income country, Norway,
-          with the lowest median income country, Turkey, to further explore the
-          health and income disparity.
+          To test the broader pattern, we compared Norway, the country with the
+          highest median income in the health datasets, with Turkey, the country
+          with the lowest.
         </p>
         <p>
-          Turkey stands out as an interesting exception, as unlike the other
-          European countries mapped, smoking behavior does not follow the same
-          income-related pattern.
+          Turkey stands out because its smoking behavior does not follow the
+          same income-related pattern seen in the other European countries in
+          the comparison.
         </p>
         <p>
-          Lower income groups tend to smoke more across Europe, however, in
-          Turkey a weaker or reversed relationship is shown. This suggests that
-          there are other factors that contribute to the results of the data.
+          Lower-income groups tend to smoke more across Europe. In Turkey, the
+          relationship is weaker or reversed, suggesting that other social,
+          cultural, or policy factors also shape the observed data.
         </p>
         <p>
           This exception highlights why it is important to take context and
           culture into consideration when analyzing data. While broad trends
           across Europe may exist, individual countries may challenge the
-          consensus by revealing a more complex social dynamic.
+          pattern by revealing a more complex social dynamic.
         </p>
       </StoryCopy>
       <CountryExceptionHealthDiagram />

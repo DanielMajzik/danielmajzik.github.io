@@ -9,9 +9,9 @@ export function GeographicPatternSection() {
       />
       <StoryCopy>
         <p>
-          While income inequality exists across Europe, its impacts of the social
-          well-being of countries vary greatly. The heatmap reveals regional
-          patterns in smoking, alcohol consumption, and depression rates.
+          While income inequality exists across Europe, its impact on social
+          well-being varies greatly by country. The heatmap reveals regional
+          patterns in smoking, alcohol consumption, and depressive symptom rates.
         </p>
         <p>
           Northern and Eastern European countries show different behavioral
@@ -21,9 +21,17 @@ export function GeographicPatternSection() {
         </p>
         <p>
           Darker colors show higher rates, while lighter colors show lower rates.
-          By switching between smoking, drinking, and depression tabs, you can
-          explore how these issues overlap geographically and identify countries
-          where certain behaviors are especially pronounced.
+          By switching between smoking, drinking, and depressive symptom layers,
+          you can explore how these issues overlap geographically and identify
+          countries where certain behaviors are especially pronounced.
+        </p>
+        <p>
+          Read this map as the transition from the aggregate income pattern to
+          country context. The burden-share plot shows who is most affected
+          within the income distribution; the map shows where those burdens are
+          concentrated. That geographic view is what makes the later interactive
+          map useful: it lets you test whether a pattern is European-wide,
+          regional, or specific to a small set of countries.
         </p>
       </StoryCopy>
       <NotebookLayerMap />

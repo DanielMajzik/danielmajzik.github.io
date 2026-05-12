@@ -1,13 +1,6 @@
-import { getGapRows } from '../charts/healthStoryData'
-import { formatGapValue } from './storyFormat'
 import { SectionHeader, StoryCopy } from './storySectionParts'
 
 export function HookSection() {
-  const gaps = getGapRows()
-  const smokingGap = gaps.find((gap) => gap.id === 'smoking')
-  const drinkingGap = gaps.find((gap) => gap.id === 'drinking')
-  const depressionGap = gaps.find((gap) => gap.id === 'depression')
-
   return (
     <section className="narrative-section hook-section" id="hook">
       <div className="story-intro">
@@ -17,40 +10,45 @@ export function HookSection() {
         />
         <StoryCopy>
           <p>
-            It can be wondered whether economic inequality affects more than
-            just financial opportunities. Is there potentially a link between
-            average income and overall well-being? It can be asked whether it
-            also influences people’s mental and physical health. Income may
-            shape habits such as smoking and alcohol consumption, while
-            lower-income groups across Europe often report worse mental health
-            outcomes and higher rates of unhealthy coping behaviors.
+            Economic inequality may affect more than financial opportunity.
+            This story asks whether income is also linked to mental and physical
+            health across Europe. Income can shape habits such as smoking and
+            alcohol consumption, while lower-income groups often report worse
+            mental health outcomes and higher rates of unhealthy coping
+            behaviors.
+          </p>
+          <p>
+            Eurofound identifies lower socioeconomic groups as facing
+            higher risk of poor mental health, while OECD and European
+            Commission reporting shows that lifestyle risk factors such as
+            smoking and harmful alcohol consumption remain prevalent across the
+            EU. See{' '}
+            <a
+              href="https://www.eurofound.europa.eu/en/publications/all/mental-health-risk-groups-trends-services-and-policies"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Eurofound (2025)
+            </a>{' '}
+            and{' '}
+            <a
+              href="https://www.oecd.org/en/publications/health-at-a-glance-europe-2024_b3704e14-en.html"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Health at a Glance: Europe 2024
+            </a>
+            .
           </p>
           <p>
             This project explores the relationship between income inequality,
-            depression, smoking, and drinking across European countries. By
-            combining multiple datasets and visualizations, the analysis
-            investigates whether lower income is associated with negative health
-            outcomes and how these patterns vary geographically and over time.
+            depressive symptoms, smoking, and heavy episodic drinking across
+            European countries. By combining multiple datasets and
+            visualizations, the analysis investigates whether lower income is
+            associated with poorer health outcomes and how these patterns vary
+            geographically and over time.
           </p>
         </StoryCopy>
-      </div>
-
-      <div className="hook-stat-grid" aria-label="Key findings">
-        <div>
-          <span>Smoking gap</span>
-          <strong>{formatGapValue(smokingGap?.end)}</strong>
-          <p>Higher rate in the first income quintile than in the fifth.</p>
-        </div>
-        <div>
-          <span>Drinking gap</span>
-          <strong>{formatGapValue(drinkingGap?.end)}</strong>
-          <p>Higher rate in the fifth income quintile than in the first.</p>
-        </div>
-        <div>
-          <span>Depression gap</span>
-          <strong>{formatGapValue(depressionGap?.end)}</strong>
-          <p>Higher rate in the first income quintile than in the fifth.</p>
-        </div>
       </div>
     </section>
   )

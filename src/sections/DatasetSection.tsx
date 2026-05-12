@@ -5,7 +5,7 @@ export function DatasetSection() {
   return (
     <section className="narrative-section reflection-section dataset-section" id="dataset">
       <SectionHeader
-        copy="The analysis combines Eurostat income data with European Health Interview Survey health indicators, then compares countries, income quintiles, and change between two survey years."
+        copy="The analysis combines Eurostat income data with European Health Interview Survey health indicators, then compares countries, income quintiles, and changes between two survey years."
         kicker="Data"
         title="What powers the analysis?"
       />
@@ -15,7 +15,7 @@ export function DatasetSection() {
           <h3>Coverage</h3>
           <p>
             The interactive map covers {getCoverage()} for 2014 and 2019. The
-            country-exception slide also uses Eurostat health observations for
+            country-exception section also uses Eurostat health observations for
             Norway and Turkey.
           </p>
         </div>

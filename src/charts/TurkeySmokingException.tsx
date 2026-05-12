@@ -80,8 +80,8 @@ export function TurkeySmokingException() {
             </span>
           </>
         }
-        subtitle={`${LATEST_YEAR} daily smoking rate by income quintile. Turkey is shown from the Eurostat smoking extract; the interactive map remains EU-27.`}
-        title="Turkey Breaks the Smoking Gradient"
+        subtitle={`${LATEST_YEAR} daily smoking rate by income quintile. Turkey is shown from the Eurostat smoking extract; the interactive map covers the EU-27.`}
+        title="Turkey Breaks the Smoking Pattern"
       >
         <svg
           aria-label={`${LATEST_YEAR} smoking rates for EU average and Turkey by income quintile`}

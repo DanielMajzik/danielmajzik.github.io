@@ -40,6 +40,13 @@ export function NotebookLayerMap() {
         src={`${NOTEBOOK_DIAGRAM_BASE}geographic-pattern-map.html`}
         title="Three-layer OpenStreetMap from explainer notebook"
       />
+      <figcaption>
+        This exploratory map turns the country-by-country tables into a spatial
+        reading of the story. Switching layers shows that the income gradient is
+        not the only structure in the data: smoking, heavy drinking, and
+        depressive symptoms each form different regional clusters, so the same
+        income group can face different risks depending on national context.
+      </figcaption>
     </figure>
   )
 }
@@ -48,18 +55,27 @@ export function CountryExceptionHealthDiagram() {
   return (
     <figure className="notebook-diagram">
       <div>
-        <h3>Health Behaviours & Mental Health by Income Quintile</h3>
+        <h3>Health Behaviors and Depressive Symptoms by Income Quintile</h3>
         <p>
-          Norway and Türkiye are compared as the highest- and lowest-median
-          income countries in the health datasets, highlighting Turkey's
-          different smoking pattern alongside drinking and depressive symptoms.
+          Norway and Turkey are compared as the countries with the highest and
+          lowest median income in the health datasets, highlighting Turkey's
+          different smoking pattern alongside heavy episodic drinking and
+          depressive symptoms.
         </p>
       </div>
       <img
-        alt="Health Behaviours and Mental Health by Income Quintile for Norway and Türkiye"
+        alt="Health behaviors and depressive symptoms by income quintile for Norway and Turkey"
         loading="eager"
         src={`${NOTEBOOK_DIAGRAM_BASE}country-exception-health-behaviours.png`}
       />
+      <figcaption>
+        The plot compares the same income quintiles in a high-income and
+        lower-income country case. Norway broadly fits the expected pattern of
+        higher smoking and depressive symptoms among lower-income groups, while
+        Turkey shows why the relationship cannot be treated as automatic:
+        smoking is weaker or reversed across the income scale, even as other
+        health indicators still vary by quintile.
+      </figcaption>
     </figure>
   )
 }
@@ -71,8 +87,8 @@ export function NotebookRelativeShareDiagram() {
         <h3>Relative Share of Health Burden by Income Quintile</h3>
         <p>
           Notebook burden-share view showing how each income quintile
-          contributes to the total observed burden for smoking, depression, and
-          heavy drinking across European countries.
+          contributes to the total observed burden for smoking, depressive
+          symptoms, and heavy drinking across European countries.
         </p>
       </div>
       <img
@@ -80,6 +96,14 @@ export function NotebookRelativeShareDiagram() {
         loading="eager"
         src={`${NOTEBOOK_DIAGRAM_BASE}notebook-figure-05.png`}
       />
+      <figcaption>
+        Each line shows the share of the observed burden carried by each income
+        quintile, rather than the raw rate alone. The downward slope for smoking
+        and depressive symptoms means lower-income groups account for a larger
+        share of those burdens; heavy drinking is flatter and tilts toward
+        higher-income groups, making it the main exception to the simple
+        deprivation story.
+      </figcaption>
     </figure>
   )
 }
@@ -99,6 +123,13 @@ export function HealthOutcomesComparisonDiagram() {
         loading="eager"
         src={`${NOTEBOOK_DIAGRAM_BASE}health-comparison-2014-2019.png`}
       />
+      <figcaption>
+        This plot compares the top and bottom median-income countries in 2014
+        and 2019 to show whether the story changes over time. The main lesson is
+        uneven movement: some countries improve on one outcome while stagnating
+        on another, so income rank alone does not explain whether health gaps
+        narrow, persist, or shift between behaviors.
+      </figcaption>
     </figure>
   )
 }

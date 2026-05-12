@@ -4,6 +4,7 @@ import './charts.css'
 type ChartShellProps = {
   title: string
   subtitle: string
+  caption?: string
   legend?: ReactNode
   children: ReactNode
 }
@@ -11,6 +12,7 @@ type ChartShellProps = {
 export function ChartShell({
   title,
   subtitle,
+  caption,
   legend,
   children,
 }: ChartShellProps) {
@@ -24,6 +26,7 @@ export function ChartShell({
         {legend ? <div className="chart-legend">{legend}</div> : null}
       </div>
       <div className="story-chart-scroll">{children}</div>
+      {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
   )
 }

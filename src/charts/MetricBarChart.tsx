@@ -15,6 +15,7 @@ type MetricBarChartProps = {
   metricId: MetricId
   title: string
   subtitle: string
+  caption?: string
   color: string
 }
 
@@ -32,6 +33,7 @@ export function MetricBarChart({
   metricId,
   title,
   subtitle,
+  caption,
   color,
 }: MetricBarChartProps) {
   const metric = getMetricDefinition(metricId)
@@ -62,7 +64,7 @@ export function MetricBarChart({
   }
 
   return (
-    <ChartShell subtitle={subtitle} title={title}>
+    <ChartShell caption={caption} subtitle={subtitle} title={title}>
       <svg
         aria-label={`${LATEST_YEAR} ${metric.label.toLowerCase()} by EU country`}
         role="img"

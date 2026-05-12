@@ -31,6 +31,13 @@
   line-height: 1.45;
 }
 
+.story-chart figcaption {
+  color: var(--ecl-color-primary-160);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
 .chart-legend {
   display: flex;
   flex-wrap: wrap;

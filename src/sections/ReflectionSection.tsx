@@ -30,8 +30,9 @@ export function ReflectionSection() {
           <p>
             Daily smoking also remains higher in lower-income groups, with a
             2019 gap of {formatGapValue(smokingGap?.end)}. Heavy episodic
-            drinking reverses the direction, sitting {formatGapValue(drinkingGap?.end)}
-            higher in the fifth income quintile.
+            drinking reverses the direction, sitting{' '}
+            {formatGapValue(drinkingGap?.end)} higher in the fifth income
+            quintile.
           </p>
         </div>
         <div>

@@ -17,6 +17,7 @@ type IncomeLineChartProps = {
   metricId: Extract<MetricId, 'meanIncome' | 'medianIncome'>
   title: string
   subtitle: string
+  caption?: string
   color: string
 }
 
@@ -75,6 +76,7 @@ export function IncomeLineChart({
   metricId,
   title,
   subtitle,
+  caption,
   color,
 }: IncomeLineChartProps) {
   const rows = COUNTRY_DATA.map((country) => {
@@ -112,7 +114,7 @@ export function IncomeLineChart({
   )
 
   return (
-    <ChartShell subtitle={subtitle} title={title}>
+    <ChartShell caption={caption} subtitle={subtitle} title={title}>
       <svg
         aria-label={`${title}, ${START_YEAR} to ${LATEST_YEAR}`}
         role="img"

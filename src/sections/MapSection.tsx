@@ -79,7 +79,7 @@ export function MapSection({
           <strong>{formatValue(extent.min, activeMetric)}</strong>
         </div>
         <div>
-          <span>EU-27 average</span>
+          <span>EU-27 country average</span>
           <strong>{formatValue(averageValue, activeMetric)}</strong>
         </div>
         <div>

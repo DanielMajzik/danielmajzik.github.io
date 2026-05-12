@@ -15,12 +15,12 @@ export function TimeEvolutionSection() {
         <p>
           To understand whether these inequalities are changing over time, we
           compare data from 2014 and 2019. The visualizations show that in
-          several countries, the gap between income groups either increased or
-          remained stable.
+          several countries, the gap between income groups either widened or
+          stayed stable.
         </p>
         <p>
-          This change or lack of change in economic growth implies that economic
-          growth alone does not necessarily reduce health inequality. In certain
+          The persistence of these gaps suggests that economic growth alone does
+          not necessarily reduce health inequality. In certain
           cases, improvements in overall living standards may benefit
           higher-income groups more than lower-income populations.
         </p>

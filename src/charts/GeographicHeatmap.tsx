@@ -70,7 +70,7 @@ export function GeographicHeatmap() {
         <div>
           <h3>Geographic Pattern</h3>
           <p className="chart-caption">
-            {`${LATEST_YEAR} country heatmap by income quintile. Rows are sorted by each country's average ${selectedOutcome.label.toLowerCase()} rate.`}
+            {`${LATEST_YEAR} country heatmap by income quintile. Rows are sorted by each country's average rate for ${selectedOutcome.label.toLowerCase()}.`}
           </p>
         </div>
         <div className="metric-tabs" role="tablist" aria-label="Heatmap metric">
@@ -138,6 +138,12 @@ export function GeographicHeatmap() {
         </div>
         <span>{formatPercent(maxValue)}</span>
       </div>
+      <figcaption>
+        The heatmap keeps country and income quintile visible at the same time.
+        Read down a column to compare countries within one quintile, or across a
+        row to see whether one country has a steep income gradient or a more
+        even distribution.
+      </figcaption>
     </figure>
   )
 }
