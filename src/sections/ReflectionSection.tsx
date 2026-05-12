@@ -12,7 +12,7 @@ export function ReflectionSection() {
     <section className="narrative-section reflection-section" id="reflection">
       <SectionHeader
         copy="The analysis shows a clear income gradient for depressive symptoms and daily smoking, but heavy episodic drinking moves in the opposite direction. Income helps reveal unequal outcomes, while geography and national context explain why the pattern is not uniform."
-        kicker="What It Means"
+        kicker="Conclusion"
         title="Income is a clue, not the cause"
       />
 

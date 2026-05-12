@@ -25,13 +25,13 @@ import { TimeEvolutionSection } from './sections/TimeEvolutionSection'
 import { TooltipOverlay } from './sections/TooltipOverlay'
 
 const progressSections = [
-  { id: 'hook', label: 'Start Here' },
+  { id: 'hook', label: 'Introduction' },
   { id: 'main-finding', label: 'Core Pattern' },
   { id: 'geographic-pattern', label: 'Across Europe' },
   { id: 'time-evolution', label: 'Over Time' },
   { id: 'country-exception', label: 'Outlier' },
   { id: 'exploration', label: 'Explore' },
-  { id: 'reflection', label: 'What It Means' },
+  { id: 'reflection', label: 'Conclusion' },
   { id: 'dataset', label: 'Data' },
 ]
 
