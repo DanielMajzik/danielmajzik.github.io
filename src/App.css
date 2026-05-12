@@ -1611,8 +1611,8 @@ h1 {
 
 @media (min-width: 1280px) {
   .dashboard-shell {
-    width: min(1320px, calc(100% - 260px));
-    margin-right: 210px;
+    width: min(1320px, calc(100% - 430px));
+    margin-right: auto;
     margin-left: auto;
   }
 }
