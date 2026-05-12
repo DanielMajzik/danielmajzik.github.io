@@ -13,7 +13,7 @@ export function MainFindingSection() {
       />
       <StoryCopy>
         <p>
-          The data reveals a clear and persistent pattern: lower-income groups 
+          The data reveals a clear and persistent pattern; lower-income groups 
           carry a disproportionately larger share of the health burden related 
           to smoking and depression. As income increases, both smoking prevalence 
           and depressive symptoms steadily decline. The poorest income quintile 

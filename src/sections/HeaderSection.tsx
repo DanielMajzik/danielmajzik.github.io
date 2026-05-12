@@ -6,7 +6,7 @@ export function HeaderSection() {
         <h1>Differences in Income Triggering Health Inequality</h1>
 
         <p className="subtitle">
-          A data story about how income shapes smoking and mental health in Europe, and where national context breaks the
+          A data story about how income shapes smoking, drinking, and mental health in Europe, and where national context breaks the
           pattern.
         </p>
         <p>
