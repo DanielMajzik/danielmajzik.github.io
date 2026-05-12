@@ -5,13 +5,13 @@ export function HookSection() {
     <section className="narrative-section hook-section" id="hook">
       <div className="story-intro">
         <SectionHeader
-          kicker="Start Here"
+          kicker="Introduction"
           title="Income leaves a health trace"
         />
         <StoryCopy>
           <p>
             Economic inequality may affect more than financial opportunity.
-            This story asks whether income is also linked to mental and physical
+            This story is about whether income is also linked to mental and physical
             health across Europe. Income can shape habits such as smoking and
             alcohol consumption, while lower-income groups often report worse
             mental health outcomes and higher rates of unhealthy coping
@@ -42,11 +42,10 @@ export function HookSection() {
           </p>
           <p>
             This project explores the relationship between income inequality,
-            depressive symptoms, smoking, and heavy episodic drinking across
-            European countries. By combining multiple datasets and
-            visualizations, the analysis investigates whether lower income is
-            associated with poorer health outcomes and how these patterns vary
-            geographically and over time.
+            depression, smoking, and drinking across European countries. By
+            combining datasets about these factors, and visualizing various patterns, 
+            the analysis investigates whether lower income is associated with negative health
+            outcomes and how these patterns vary geographically and over time.
           </p>
         </StoryCopy>
       </div>
