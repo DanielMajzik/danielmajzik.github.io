@@ -5,7 +5,7 @@ export function NotebookCtaSection() {
     <section className="notebook-cta-section" aria-label="Explainer notebook">
       <div>
         <p className="section-kicker">Notebook</p>
-        <h2>See the full workflow.</h2>
+        <h2>See the full workflow</h2>
         <p>
           Open the static notebook page to inspect the data preparation,
           intermediate outputs, and supporting analysis behind the story.

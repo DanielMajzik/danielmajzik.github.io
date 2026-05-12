@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "data:build": "node scripts/build-eu-stats.mjs",
-    "build": "tsc -b && vite build",
+    "notebook:build": "node scripts/build-notebook.mjs",
+    "build": "npm run notebook:build && tsc -b && vite build",
     "lint": "eslint ."
   },
   "dependencies": {
